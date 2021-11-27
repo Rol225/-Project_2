@@ -13,6 +13,7 @@ body{
     margin: 0 auto;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: 400;
+    overflow: hidden;
     position: relative;
 }
 button{
@@ -390,21 +391,54 @@ input, input:focus-visible{
     text-align: center;
     transition: .5s linear;
   }
+.th{
+  cursor: default;
+}
 .tr{
     background: #E2E2E2;
 }
 .tr-red{
   background: #ff00005e;
-  color: #ffff;
+  color: #ffffffc4;
 }
 .tr-yelow{
   background: #df800aa6;
-  color: #ffff;
+  color: #ffffffd9;
 }
 .td {
       overflow-x: auto;
       max-width: 92px;
       font-weight: 400;
+}
+.tdStatusOK{
+  background: URL("../icon/ok.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 40px;
+}
+.tdStatusUnknow{
+  background: URL("../icon/unknow.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 36px;
+}
+.tdStatusNo{
+  background: URL("../icon/no.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 40px;
+}
+.tdActionDelete{
+  background: URL("../icon/delete.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: .2s linear;
+}
+.tdActionDelete:hover{
+  opacity: 1;
 }
 .th{
     font-weight: 500;
