@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../css/standart.css">
+        <script src="../js/server-app.js" defer></script>
+    </head>
+    <section class="global_search">
+        <div class="tool_search">
+            <input type="text" class="input_search input_search_global" placeholder="Найти..." id="search_global">
+            <button class="search_icon_list_btn">
+                <hr class="search_icon_list_hr">
+                <hr class="search_icon_list_hr">
+                <hr class="search_icon_list_hr">
+            </button>
+            <button class="search_sort_btn">▼</button>
+            <div class="rtrey"></div>
+        </div>
+    </section>
+
+    <div class="TopLeftRightBtn" id="TopLeftRightBtn_CMC">
+        <button class="TopLeftRightBtn_btn Left_button" onclick="Left_button_queue()" id="Left_button">Очередь</button>
+        <button class="TopLeftRightBtn_btn Right_button" onclick="Right_button_write()" id="Right_button">Написать</button>
+    </div>
+
+    <section class="devices-playlist">
+
+        <section class="list">
+            <div class="list_content" id="ListContent"></div>
+
+            <div class="list_nav">
+                <button class="list_nav_item"><span>
+                    <p class="list_nav_item_symbol">Т</p>
+                    <p class="list_nav_item_symbol">а</p>
+                    <p class="list_nav_item_symbol">б</p>
+                    <p class="list_nav_item_symbol">л</p>
+                    <p class="list_nav_item_symbol">о</p>
+                </span></button>
+                <button class="list_nav_item"><span class="list_nav_item_text">
+                    <p class="list_nav_item_symbol">Д</p>
+                    <p class="list_nav_item_symbol">и</p>
+                    <p class="list_nav_item_symbol">н</p>
+                    <p class="list_nav_item_symbol">а</p>
+                    <p class="list_nav_item_symbol">м</p>
+                    <p class="list_nav_item_symbol">и</p>
+                    <p class="list_nav_item_symbol">к</p>
+                    <p class="list_nav_item_symbol">и</p>
+                </span></button>
+                <button class="list_nav_item"><span class="list_nav_item_text" onclick="Devices(3)">
+                    <p class="list_nav_item_symbol">С</p>
+                    <p class="list_nav_item_symbol">М</p>
+                    <p class="list_nav_item_symbol">С</p>
+                </span></button>
+                <button class="list_nav_item"><span class="list_nav_item_text">
+                    <p class="list_nav_item_symbol">E</p>
+                    <p class="list_nav_item_symbol">-</p>
+                    <p class="list_nav_item_symbol">m</p>
+                    <p class="list_nav_item_symbol">a</p>
+                    <p class="list_nav_item_symbol">i</p>
+                    <p class="list_nav_item_symbol">l</p>
+                </span></button>
+            </div>
+
+            <button class="roll">
+                <hr class="roll_hr">
+                <hr class="roll_hr">
+                <hr class="roll_hr">
+            </button>
+        </section>
+
+        <section class="info" id="info_device">
+            <div class="view_list_item" id="view_list_item"></div>
+            <hr class="view_list_item_hr">
+            <div class="view_content" id="view_content">
+                <div class="view_search">
+                    <div class="tool_search">
+                        <input type="text" class="input_search input_search_global" placeholder="Найти..." id="search_global">
+                        <button class="search_icon_list_btn">
+                            <hr class="search_icon_list_hr">
+                            <hr class="search_icon_list_hr">
+                            <hr class="search_icon_list_hr">
+                        </button>
+                        <div class="rtrey"></div>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <tbody id="rezult">
+                        <tr class="tr">
+                            <th class="th th_left">Время</th>
+                            <th class="th">Группа</th>
+                            <th class="th">Наименование</th>
+                            <th class="th">Кому</th>
+                            <th class="th">Статус</th>
+                            <th class="th">Действие</th>
+                            <th class="th th_right">Действие <p class="p_margin_0">над группой</p></th>
+                        </tr>
+                    </div>
+                  </tbody>
+                </table>
+
+            </div>
+            <div class="send_message" id="send_message">
+              <div class="send_message_item_1">
+                <div class="send_message_item_title">
+                  Кому
+                </div>
+                <div class="send_message_arrow">
+                    <span class="send_message_arrow_text">Одному человеку</span>
+                    <input type="tel" class="send_message_arrow_input" name="" value="" placeholder="Номер...">
+                </div>
+                <div class="send_message_arrow">
+                    <span class="send_message_arrow_text">Группе людей</span>
+                    <input type="text" class="send_message_arrow_input" name="" value="" placeholder="Группа...">
+                </div>
+                <div class="send_message_item_title">
+                  Время
+                </div>
+                <div class="send_message_arrow">
+                    <span class="send_message_arrow_text">Время отправления в ручную</span>
+                    <input type="time" class="send_message_arrow_input" name="" value="" placeholder="00.00">
+                </div>
+                <div class="send_message_arrow">
+                    <span class="send_message_arrow_text">Отправление по событию</span>
+                    <input type="" class="send_message_arrow_input" name="" value="" placeholder="Событие...">
+                </div>
+                <div class="send_message_arrow">
+                    <span class="send_message_arrow_text">Ограничение по времени</span>
+                    <input type="time" class="send_message_arrow_input" name="" value="" placeholder="00.00">
+                </div>
+                <div class="send_message_item_title">
+                  Не обязательное поле
+                </div>
+                <div class="send_message_arrow">
+                    <input type="text" class="send_message_arrow_input" name="" value="" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px">
+                </div>
+              </div>
+              <div class="send_message_item_2">
+                <div class="send_message_item_2_header">
+                  <button type="button" class="load_shablon" name="button">Загрузить шаблон</button>
+                  <button type="button" class="clear" name="button">C</button>
+                </div>
+                <input type="text" class="input_massage" name="" value="">
+              </div>
+            </div>
+        </section>
+
+    </section>
+</html>

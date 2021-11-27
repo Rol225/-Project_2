@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./css/standart.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/module.js" defer></script>
+    <script src="./js/server-app.js" defer></script>
+    <script src="./js/authorization.js" defer></script>
+    <title>MyApp</title>
+</head>
+<body>
+    <section class="bar" id="bar">
+        <div class="nav_bar">
+            <span class="nav_item">Настройки</span>
+            <span class="nav_item">Плейлисты</span>
+            <span class="nav_item" onclick="MainModule()">Устроиства</span>
+            <span class="nav_item">История</span>
+            <span class="nav_item">О программе</span>
+        </div>
+    </section>
+
+    <div class="Main_hellow" id="Main_hellow">
+      <div class="hellow_text hellow_text_version">версия Alpha 0.0.1</div>
+      <div class="hellow_text hellow_text_title">Терминал диспетчера</div>
+      <div id="authorization">
+        <input class="authorization-input" type="text" placeholder="Логин...">
+        <input class="authorization-input" type="text" placeholder="Пароль...">
+        <button class="authorization-btn" type="button" name="button" onclick="EndAuthorization()">Войти</button>
+      </div>
+      <div class="hellow_text hellow_text_welcome" onclick="StartAuthorization()" id="welcome">Добро пожаловать</div>
+    </div>
+
+    <div id="module_devices"></div>
+
+    <script type="./render.js">
+
+    </script>
+</body>
+</html>
