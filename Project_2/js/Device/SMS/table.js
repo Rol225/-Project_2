@@ -3,9 +3,18 @@ var IdElement
 /*Сортировка*/
 function Sort(device, sortProperty, order){
   if(order == 1){
-    if(device == 'SMSDevice'){
-      let data = DeviceDataSMS[IdElement]
-      let newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 2)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 2)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 2)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 2)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 2)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 2)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+    if(device == 'SMSDevice' || device == 'EmailDevice'){
+      let data
+      let newStr
+      if(device == 'SMSDevice'){
+        data = DeviceDataSMS[IdElement]
+        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 2)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 2)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 2)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 2)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 2)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 2)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+      }
+      else if(device == 'EmailDevice'){
+        data = DeviceDataEmail[IdElement]
+        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'EmailDevice\', \'time\', 2)">Время</th><th class="th" onclick="Sort(\'EmailDevice\', \'group\', 2)">Группа</th><th class="th" onclick="Sort(\'EmailDevice\', \'name\', 2)">Наименование</th><th class="th" onclick="Sort(\'EmailDevice\', \'recipient\', 2)">Кому</th><th class="th" onclick="Sort(\'EmailDevice\', \'content\', 2)">Текст</th><th class="th" onclick="Sort(\'EmailDevice\', \'status\', 2)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+      }
+
       if(sortProperty == 'time'){
         data.item.sort((prev, next) => prev.date.time - next.date.time);
       }
@@ -13,7 +22,8 @@ function Sort(device, sortProperty, order){
         data.item.sort((prev, next) => prev.status - next.status);
       }
       else if(sortProperty=='recipient'){
-        data.item.sort((prev, next) => prev.recipient - next.recipient);
+        if(device == 'SMSDevice'){data.item.sort((prev, next) => prev.recipient - next.recipient);}
+        else if(device == 'EmailDevice'){data.item.sort((prev, next) => prev.recipient.localeCompare(next.recipient));}
       }
       else if(sortProperty=='group'){
         data.item.sort((prev, next) => prev.group.localeCompare(next.group));
@@ -28,9 +38,18 @@ function Sort(device, sortProperty, order){
     }
   }
   else if(order == 2){
-    if(device == 'SMSDevice'){
-      let data = DeviceDataSMS[IdElement]
-      let newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 1)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 1)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 1)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 1)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 1)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 1)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+    if(device == 'SMSDevice' || device == 'EmailDevice'){
+      let data
+      let newStr
+      if(device == 'SMSDevice'){
+        data = DeviceDataSMS[IdElement]
+        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 1)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 1)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 1)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 1)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 1)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 1)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+      }
+      else if(device == 'EmailDevice'){
+        data = DeviceDataEmail[IdElement]
+        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'EmailDevice\', \'time\', 1)">Время</th><th class="th" onclick="Sort(\'EmailDevice\', \'group\', 1)">Группа</th><th class="th" onclick="Sort(\'EmailDevice\', \'name\', 1)">Наименование</th><th class="th" onclick="Sort(\'EmailDevice\', \'recipient\', 1)">Кому</th><th class="th" onclick="Sort(\'EmailDevice\', \'content\', 1)">Текст</th><th class="th" onclick="Sort(\'EmailDevice\', \'status\', 1)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+      }
+
       if(sortProperty == 'time'){
         data.item.sort((next, prev) => prev.date.time - next.date.time);
       }
@@ -38,7 +57,8 @@ function Sort(device, sortProperty, order){
         data.item.sort((next, prev) => prev.status - next.status);
       }
       else if(sortProperty=='recipient'){
-        data.item.sort((next, prev) => prev.recipient - next.recipient);
+        if(device == 'SMSDevice'){data.item.sort((next, prev) => prev.recipient - next.recipient);}
+        else if(device == 'EmailDevice'){data.item.sort((next, prev) => prev.recipient.localeCompare(next.recipient));}
       }
       else if(sortProperty=='group'){
         data.item.sort((next, prev) => prev.group.localeCompare(next.group));
@@ -94,13 +114,20 @@ function Device_info(IdElementNew, device){
     let sortProperty// Поле сортировки
 
     if(device == 'SMSDevice'){
+      Devices(3)
       data = DeviceDataSMS[IdElement];
       document.getElementById('info_device').style.display='block';
       document.getElementById('TopLeftRightBtn_CMC').style.display='flex';
+      document.getElementById('TopLeftRightBtn_Email').style.display='none';
       sortProperty = 'time'
     }
     else if(device == 'EmailDevice'){
+      Devices(4)
       data = DeviceDataEmail[IdElement];
+      document.getElementById('info_device').style.display='block';
+      document.getElementById('TopLeftRightBtn_CMC').style.display='none';
+      document.getElementById('TopLeftRightBtn_Email').style.display='flex';
+      sortProperty = 'time'
     }
     else if(device == 'SpeakersDevice'){
       data = DeviceDataSpeakers[IdElement];

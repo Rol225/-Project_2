@@ -21,7 +21,12 @@
     </section>
 
     <div class="TopLeftRightBtn" id="TopLeftRightBtn_CMC">
-        <button class="TopLeftRightBtn_btn Left_button" onclick="Left_button_queue()" id="Left_button">Очередь</button>
+        <button class="TopLeftRightBtn_btn Left_button" onclick="Left_button_queue('SMSDevice')" id="Left_button">Очередь</button>
+        <button class="TopLeftRightBtn_btn Right_button" onclick="Right_button_write()" id="Right_button">Написать</button>
+    </div>
+
+    <div class="TopLeftRightBtn" id="TopLeftRightBtn_Email">
+        <button class="TopLeftRightBtn_btn Left_button" onclick="Left_button_queue('EmailDevice')" id="Left_button">Очередь</button>
         <button class="TopLeftRightBtn_btn Right_button" onclick="Right_button_write()" id="Right_button">Написать</button>
     </div>
 
@@ -48,12 +53,12 @@
                     <p class="list_nav_item_symbol">к</p>
                     <p class="list_nav_item_symbol">и</p>
                 </span></button>
-                <button class="list_nav_item"><span class="list_nav_item_text" onclick="Devices(3)">
+                <button class="list_nav_item" onclick="Devices(3)"><span class="list_nav_item_text">
                     <p class="list_nav_item_symbol">С</p>
                     <p class="list_nav_item_symbol">М</p>
                     <p class="list_nav_item_symbol">С</p>
                 </span></button>
-                <button class="list_nav_item"><span class="list_nav_item_text">
+                <button class="list_nav_item" onclick="Devices(4)"><span class="list_nav_item_text">
                     <p class="list_nav_item_symbol">E</p>
                     <p class="list_nav_item_symbol">-</p>
                     <p class="list_nav_item_symbol">m</p>
