@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="../css/standart.css">
         <script src="../js/module.js" defer></script>
         <script src="../js/server-app.js" defer></script>
+        <script src="../js/Device/SMS/info-item.js" defer></script>
+        <script src="../js/Device/SMS/table.js" defer></script>
     </head>
     <section class="global_search">
         <div class="tool_search">
@@ -107,40 +109,43 @@
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Одному человеку</span>
-                    <input type="tel" class="send_message_arrow_input" name="" value="" placeholder="Номер...">
+                    <input type="tel" class="send_message_arrow_input"  placeholder="Номер..." id="sendTelephon">
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Группе людей</span>
-                    <input type="text" class="send_message_arrow_input" name="" value="" placeholder="Группа...">
+                    <input type="text" class="send_message_arrow_input" placeholder="Группа..." id="sendGroup">
                 </div>
                 <div class="send_message_item_title">
                   Время
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Время отправления в ручную</span>
-                    <input type="time" class="send_message_arrow_input" name="" value="" placeholder="00.00">
+                    <input type="time" class="send_message_arrow_input"  placeholder="00.00" id="sendTime">
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Отправление по событию</span>
-                    <input type="" class="send_message_arrow_input" name="" value="" placeholder="Событие...">
+                    <input type="" class="send_message_arrow_input"  placeholder="Событие..." id="sendTriger">
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Ограничение по времени</span>
-                    <input type="time" class="send_message_arrow_input" name="" value="" placeholder="00.00">
+                    <input type="time" class="send_message_arrow_input" placeholder="00.00" id="sendTimeEnd">
                 </div>
                 <div class="send_message_item_title">
                   Не обязательное поле
                 </div>
                 <div class="send_message_arrow">
-                    <input type="text" class="send_message_arrow_input" name="" value="" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px">
+                    <input type="text" class="send_message_arrow_input" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px" id="sendName">
                 </div>
               </div>
               <div class="send_message_item_2">
                 <div class="send_message_item_2_header">
-                  <button type="button" class="load_shablon" name="button">Загрузить шаблон</button>
-                  <button type="button" class="clear" name="button">C</button>
+                  <button type="button" class="load_shablon" name="button" id="loadShablon">Загрузить шаблон</button>
+                  <button type="button" class="clear" name="button" id="clearMessage">C</button>
                 </div>
-                <input type="text" class="input_massage" name="" value="">
+                <textarea type="text" class="input_massage" id="sendText"></textarea>
+              </div>
+              <div class="send_message_item_3">
+                <button type="button" name="button" class="send_sms_btn" id="sendBtn" onclick="SendMassege('SMSDevice')">Сохранить</button>
               </div>
             </div>
         </section>

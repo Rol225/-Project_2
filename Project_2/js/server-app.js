@@ -1,30 +1,42 @@
 var DeviceDataSMS;
+var DeviceDataEmail;
+var DeviceDataSpeakers;
+var DeviceDataScoreboard;
 
-/*СМС*/
-function RequestSMS(option){
-  if(option == 'GET'){
-    Request(option, 'http://192.168.253.9:8080/Json/SMS_1.json')
-    .then(data => PrintDevice(data, 'SMSTable'))
-    .catch(err => console.log(err))
-  }
-  else if(option == 'POST'){
-    Request(option, 'http://localhost:8080/Json/SMS_1.json')
-    .then(data => PrintDevice(data, 'SMSTable'))
-    .catch(err => console.log(err))
-  }
-}
-/*---СМС---*/
+/*Ввод и получение каналов*/
 function Devices(option){
-  if(option == 1){url = 'http://192.168.253.9:8080/Json/ScoreboardDevice.json'}
-  else if(option == 2){url = 'http://192.168.253.9:8080/Json/SpeakersDevice.json'}
-  else if(option == 3){url = 'http://192.168.253.9:8080/Json/SMSDevice.json'}
-  else if(option == 4){url = 'http://192.168.253.9:8080/Json/EmailDevice.json'}
+  if(option == 1){url = 'http://192.168.253.9:8080/Json/ScoreboardDevice.json'; device='ScoreboardDevice'}
+  else if(option == 2){url = 'http://192.168.253.9:8080/Json/SpeakersDevice.json'; device='SpeakersDevice'}
+  else if(option == 3){url = 'http://192.168.253.9:8080/Json/SMSDevice.json'; device='SMSDevice'}
+  else if(option == 4){url = 'http://192.168.253.9:8080/Json/EmailDevice.json'; device='EmailDevice'}
   Request('GET', url)
-  .then(data => PrintDevice(data, 'SMSDevice'))
+  .then(data => Data(data, device))
   .catch(err => console.log(err))
-  //RequestSMS('GET')
 }
-/// Получение - Отправка данных
+/*---Вывод и получение каналов---*/
+
+/*Занесение данных из базы*/
+function Data(data, device){
+  if(device == 'SMSDevice'){
+    DeviceDataSMS = data
+    PrintDevice(device)
+  }
+  else if(device == 'EmailDevice'){
+    DeviceDataEmail = data
+    PrintDevice(device)
+  }
+  else if(device == 'SpeakersDevice'){
+    DeviceDataSpeakers = data
+    PrintDevice(device)
+  }
+  else if(device == 'ScoreboardDevice'){
+    DeviceDataScoreboard = data
+    PrintDevice(device)
+  }
+}
+/*---Занесение данных из базы---*/
+
+/*Получение - Отправка данных*/
 function Request(method, url, body = null){
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -47,15 +59,37 @@ function Request(method, url, body = null){
       xhr.send(JSON.stringify(body));
     });
   }
+/*---Получение - Отправка данных---*/
 
-  /*Устройства/каналы*/
-  function PrintDevice(data, option){
-    if(option == 'SMSDevice'){
-        DeviceDataSMS = data
-        document.getElementById('ListContent').innerHTML = '';
-        for (let i in data){
-          document.getElementById('ListContent').innerHTML += '<div class="list_item item--devices" onclick="Device_info('+i+')"><div class="item_status_light item_status_light--device" style="background:'+data[i].status+'"></div><div class="item_descriptions item_descriptions--device"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].statusText+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].description+'</span></div></div></div>'
-        }
-    }
+/*Отправка сообщения*/
+function SendMassege(device){
+  let body;
+  let date = new Date();
+  if(device == 'SMSDevice'){
+    url = 'http://192.168.253.9:8080/Json/SmsMessage.json'
+    body = {
+        idDevice: IdElement,
+        name: document.getElementById('sendName').value,
+        date:{
+            year: date.getUTCFullYear(),
+            month: date.getUTCMonth()+1,
+            day: date.getUTCDate(),
+            time: document.getElementById('sendTime').value,
+            timeOut: document.getElementById('sendTimeEnd').value,
+            triger: document.getElementById('sendTriger').value
+        },
+        group: document.getElementById('sendGroup').value,
+        recipient: document.getElementById('sendTelephon').value,
+        content: document.getElementById('sendText').value,
+        status: 2
+    };
+    Request('POST', url, body)
+    document.getElementById('sendName').value=null;
+    document.getElementById('sendTimeEnd').value=null;
+    document.getElementById('sendTriger').value=null;
+    document.getElementById('sendGroup').value=null;
+    document.getElementById('sendTelephon').value=null;
+    document.getElementById('sendText').value=null;
   }
-  /*------Устройства/каналы--------*/
+}
+/*---Отправка сообщения---*/

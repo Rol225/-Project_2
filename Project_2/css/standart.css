@@ -14,7 +14,6 @@ body{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: 400;
     overflow: hidden;
-    position: relative;
 }
 button{
     cursor: pointer;
@@ -22,6 +21,16 @@ button{
 iframe {
     width: 100%;
     height: 96.64vh;
+}
+input{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+textarea{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 .Main_hellow{
   width: 100%;
@@ -459,10 +468,17 @@ input, input:focus-visible{
 /*-------------Send SMS display 2----------------*/
 .send_message{
   display: none;
-  justify-content: space-between;
+  grid-template-areas: "item_1 item_2"
+                      "item_3 item_3";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 50px;
+  justify-items: center;
 }
 .send_message_item_1{
   color: #ffff;
+  grid-area: item_1;
+  width: 100%
 }
 .send_message_arrow{
   width: 100%;
@@ -482,15 +498,57 @@ input, input:focus-visible{
   height: 20px;
 }
 .send_message_item_2{
-  width: 44%;
+  grid-area: item_2;
+  width: 100%
 }
 .send_message_item_2_header {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background: #c1bfbf;
+}
+.clear {
+    background: #f96767;
+    border: 0;
+    padding: 8px;
+    transition: .2s linear;
+}
+.clear:hover{
+  background: #f14c4c;
 }
 .input_massage {
-    width: 99%;
-    height: 295px;
-    border: none;
+  width: 100%;
+  height: 295px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  border: 0;
+  padding: 0;
+}
+.load_shablon {
+    border: 0;
+    background: #9d9d9d;
+    transition: .2s linear;
+}
+.load_shablon:hover{
+    background: #b9b6b6;
+}
+.send_message_item_3{
+  grid-area: item_3;
+}
+.send_sms_btn{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 7px;
+  background: #0ab7af;
+  color: #fff;
+  border: 0;
+  border-radius: 17px;
+  padding: 8px 65px;
+  transition: .2s linear;
+}
+.send_sms_btn:hover{
+  background: #0eddd3;
 }
