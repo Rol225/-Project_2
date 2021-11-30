@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/playlist.css">
+    <script src="../js/module.js" defer></script>
+    <script src="../js/Playlist/playlist-server-app.js" defer></script>
+    <script src="../js/Playlist/GetPrint.js" defer></script>
+</head>
+<body>
+
+  <section class="nav">
+      <div class="nav_list">
+        <button type="button" name="button" class="nav_list_item">Табло</button>
+        <button type="button" name="button" class="nav_list_item">Динамики</button>
+        <button type="button" name="button" class="nav_list_item" onclick="Playlist(3)">СМС</button>
+        <button type="button" name="button" class="nav_list_item">E-mail</button>
+      </div>
+  </section>
+
+  <section class="search" id="search_section"></section>
+
+  <section class="all_playlists">
+    <div class="container_playlist" id="list_playlist"></div>
+  </section>
+
+</body>
+</html>

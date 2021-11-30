@@ -1,0 +1,158 @@
+body{
+  background: transparent;
+  margin: 0 auto;
+}
+button{
+    cursor: pointer;
+}
+input{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+input, input:focus-visible{
+    outline: none;
+    opacity: 0.9;
+}
+textarea{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+.nav{
+  width: 100%;
+  background: #473F3F;
+}
+.nav_list_item{
+  width: 140px;
+  height: 30px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #ffff;
+  background: #4A4545;
+  border: none;
+  padding: 0;
+  transition: .2s linear;
+}
+.nav_list_item:hover{
+  background: #5A5656
+}
+.search{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.search_module{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 500px;
+  background: #473F3F;
+}
+.search_device{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 6px;
+  color: #ffff;
+  margin-left: 30%;
+  cursor: default;
+}
+.search_input{
+  width: 100%;
+  max-width: 305px;
+  height: 25px;
+  padding: 0px 12px;
+  opacity: 0.3;
+  cursor: help;
+  margin-top: 6px;
+}
+.rtrey {
+  border: 20px solid transparent;
+  border-right: 20px solid #616161;
+  border-bottom: 20px solid #616161;
+  margin-left: 127px;
+}
+.all_playlists{
+  height: 874px;
+  margin: 20px auto 0 auto;
+  overflow: overlay;
+}
+.all_playlists::-webkit-scrollbar {
+  width: 3px;
+}
+.all_playlists::-webkit-scrollbar-thumb {
+  background-color: #bcbcbd;
+  border-radius: 20px;
+}
+.container_playlist{
+  width: 100%;
+  max-width: 1380px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.playlist{
+  width: 100%;
+  max-width: 310px;
+  height: 130px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  background: #ffffff17;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  transition: .2s linear;
+  margin: 0 7px 15px 7px;
+}
+.playlist-add:hover{
+  background: #ffffff29;
+}
+.playlist-yellow{
+  background: #93815a;
+}
+.playlist-yellow:hover{
+  background: #b19b6b;
+}
+.playlist-red{
+  background: #a14a3c;
+}
+.playlist-red:hover{
+  background: #c95846;
+}
+.playlist-green{
+  background: #25952e;
+}
+.playlist-green:hover{
+  background: #2caf37;
+}
+.playlist_description{
+  height: 90px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+.playlist_verification{
+  font-weight: 500;
+}
+.playlist_description::-webkit-scrollbar {
+  width: 3px;
+}
+.playlist_description::-webkit-scrollbar-thumb {
+  background-color: #bcbcbd;
+  border-radius: 20px;
+}
+.playlist_description_text{
+  color: #d1cfcf;
+}
+.playlist_add{
+  width: 100%;
+  height: 100%;
+  font-size: 120px;
+  color: #bdbdbd;
+  border: none;
+  background: transparent;
+  padding: 0;
+  transition: .2s linear;
+}
+.playlist_add:hover{
+  color: #dbdada;
+}
