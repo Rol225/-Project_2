@@ -8,14 +8,14 @@
     <script src="./js/module.js" defer></script>
     <script src="./js/server-app.js" defer></script>
     <script src="./js/authorization.js" defer></script>
-    <title>MyApp</title>
+    <title>Терминал диспетчера</title>
 </head>
 <body>
     <section class="bar" id="bar">
         <div class="nav_bar">
             <span class="nav_item">Настройки</span>
-            <span class="nav_item">Плейлисты</span>
-            <span class="nav_item" onclick="MainModule()">Устроиства</span>
+            <span class="nav_item" onclick="PlaylistModule()">Плейлисты</span>
+            <span class="nav_item" onclick="DeviceModule()">Устроиства</span>
             <span class="nav_item">История</span>
             <span class="nav_item">О программе</span>
         </div>
@@ -31,7 +31,7 @@
       <div class="hellow_text hellow_text_welcome" onclick="StartAuthorization()" id="welcome">Добро пожаловать</div>
     </div>
 
-    <div id="module_devices"></div>
+    <div id="module"></div>
 
     <script type="./render.js">
 

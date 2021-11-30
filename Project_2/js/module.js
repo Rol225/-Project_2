@@ -1,10 +1,16 @@
 
 
 /*Смена модулей*/
-function MainModule(){
+function DeviceModule(){
     document.getElementById('Main_hellow').style.display='none'
     document.getElementById('welcome').innerHTML = '<div class="hellow_text hellow_text_welcome" id="welcome">Добро пожаловать</div>'
-    document.getElementById('module_devices').innerHTML = '<iframe src="./module/devices.html" frameborder="0" seamless></iframe>';
+    document.getElementById('module').innerHTML = '<iframe src="./module/devices.html" frameborder="0" seamless></iframe>';
+}
+function PlaylistModule(){
+  document.getElementById('Main_hellow').style.display='none'
+  document.getElementById('welcome').innerHTML = '<div class="hellow_text hellow_text_welcome" id="welcome">Добро пожаловать</div>'
+  document.getElementById('module').innerHTML = '<iframe src="./module/playlist.html" frameborder="0" seamless></iframe>';
+  }
 }
 /*---Смена модулей---*/
 /*Выпадающий список*/

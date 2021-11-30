@@ -8,9 +8,11 @@ function createWindow(){
   win = new BrowserWindow({width, height});
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file',
+    protocol: 'file:',
     slashes: true
   }));
+
+  //win.setMenu(null)
   win.webContents.openDevTools();
   win.on('cloused', () => {
     win = null;

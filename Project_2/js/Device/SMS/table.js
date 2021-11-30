@@ -8,6 +8,7 @@ function Sort(device, sortProperty, order){
       let newStr
       if(device == 'SMSDevice'){
         data = DeviceDataSMS[IdElement]
+        data = DeviceDataSMS[IdElement]
         newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 2)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 2)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 2)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 2)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 2)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 2)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
       }
       else if(device == 'EmailDevice'){
@@ -112,9 +113,9 @@ function Device_info(IdElementNew, device){
     IdElement = IdElementNew // Id елемента
     let data        // Инофрмация из бд
     let sortProperty// Поле сортировки
+    Reload = 1
 
     if(device == 'SMSDevice'){
-      Devices(3)
       data = DeviceDataSMS[IdElement];
       document.getElementById('info_device').style.display='block';
       document.getElementById('TopLeftRightBtn_CMC').style.display='flex';
@@ -122,7 +123,6 @@ function Device_info(IdElementNew, device){
       sortProperty = 'time'
     }
     else if(device == 'EmailDevice'){
-      Devices(4)
       data = DeviceDataEmail[IdElement];
       document.getElementById('info_device').style.display='block';
       document.getElementById('TopLeftRightBtn_CMC').style.display='none';

@@ -1,3 +1,5 @@
+var Reload
+
 /*Правая левая кнопка дисплей->СМС*/
 function Left_button_queue(device){
   document.getElementById('view_content').style.display='block'
@@ -6,7 +8,9 @@ function Left_button_queue(device){
   document.getElementById('Left_button').style.border='#7F9860'
   document.getElementById('Right_button').style.background='#8A8A8A'
   document.getElementById('Right_button').style.border='#8A8A8A'
-  Device_info(IdElement, device)
+  if(device == 'SMSDevice'){Devices(3)}
+  else if(device == 'EmailDevice'){Devices(4)}
+
 }
 function Right_button_write(){
   document.getElementById('view_content').style.display='none'
@@ -15,6 +19,8 @@ function Right_button_write(){
   document.getElementById('Left_button').style.border='#8A8A8A'
   document.getElementById('Right_button').style.background='#7F9860'
   document.getElementById('Right_button').style.border='#7F9860'
+  if(device == 'SMSDevice'){Devices(3)}
+  else if(device == 'EmailDevice'){Devices(4)}
 }
 /*--Правая левая кнопка дисплей->СМС--*/
 
@@ -25,6 +31,9 @@ function PrintDevice(device){
   else if(device=='SpeakersDevice'){data = DeviceDataSpeakers}
   else if(device=='ScoreboardDevice'){data = DeviceDataScoreboard}
 
+  if(Reload == 1){
+     Device_info(IdElement, device)
+  }
 
   document.getElementById('ListContent').innerHTML = '';
   for (let i in data){

@@ -5,10 +5,10 @@ var DeviceDataScoreboard;
 
 /*Ввод и получение каналов*/
 function Devices(option){
-  if(option == 1){url = 'http://192.168.253.9:8080/Json/ScoreboardDevice.json'; device='ScoreboardDevice'}
-  else if(option == 2){url = 'http://192.168.253.9:8080/Json/SpeakersDevice.json'; device='SpeakersDevice'}
-  else if(option == 3){url = 'http://192.168.253.9:8080/Json/SMSDevice.json'; device='SMSDevice'}
-  else if(option == 4){url = 'http://192.168.253.9:8080/Json/EmailDevice.json'; device='EmailDevice'}
+  if(option == 1){url = 'http://192.168.253.9:8080/Json/ScoreboardDevice.json?nocahe='+(new Date()).getTime(); device='ScoreboardDevice'}
+  else if(option == 2){url = 'http://192.168.253.9:8080/Json/SpeakersDevice.json?nocahe='+(new Date()).getTime(); device='SpeakersDevice'}
+  else if(option == 3){url = 'http://192.168.253.9:8080/Json/SMSDevice.json?nocahe='+(new Date()).getTime(); device='SMSDevice'}
+  else if(option == 4){url = 'http://192.168.253.9:8080/Json/EmailDevice.json?nocahe='+(new Date()).getTime(); device='EmailDevice'}
   Request('GET', url)
   .then(data => Data(data, device))
   .catch(err => console.log(err))
