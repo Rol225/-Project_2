@@ -15,24 +15,6 @@ function Playlist(option){
 }
 /*---Ввод и получение плейлистов---*/
 
-/*Занесение данных из базы*/
-function Data(data, device){
-  if(device == 'SMSDevice'){
-    PlaylistDataSMS = data
-  }
-  else if(device == 'EmailDevice'){
-    PlaylistDataEmail = data
-  }
-  else if(device == 'SpeakersDevice'){
-    PlaylistDataSpeakers = data
-  }
-  else if(device == 'ScoreboardDevice'){
-    PlaylistDataScoreboard = data
-  }
-  AllPlaylistsPrint(device, data)
-}
-/*---Занесение данных из базы---*/
-
 /*Получение - Отправка данных*/
 function Request(method, url, body = null){
     return new Promise((resolve, reject) => {
@@ -57,3 +39,32 @@ function Request(method, url, body = null){
     });
   }
 /*---Получение - Отправка данных---*/
+
+function PlaylistSend(){
+  let test = 0
+  NewPlaylist.name = document.getElementById('view_title').value
+  NewPlaylist.description = document.getElementById('view_description').value
+
+  test += Validation('text', NewPlaylist.name)
+  test += Validation('text', NewPlaylist.description)
+  test += Validation('array', NewPlaylist.item)
+
+  if(test==3){
+    Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylist)
+  }
+  else{
+    console.log('Ошибка не заполненно поле')
+  }
+}
+
+function Validation(input, field){
+  let test = 1
+  if(input == 'text'){
+    field = field.replace(/\s+/g, '');
+    if(field == ''){test=0}
+  }
+  else if(input == 'array'){
+    if(field.length == 1){test=0}
+  }
+  return test
+}

@@ -19,8 +19,41 @@
 
   <section class="search" id="search_section"></section>
 
-  <section class="all_playlists">
+  <section class="all_playlists" id="section_all_playlists">
     <div class="container_playlist" id="list_playlist"></div>
+  </section>
+
+  <section class="playlist_view" id="section_playlist_view">
+    <div class="container_playlist">
+      <div class="playlist_text">
+        <div class="playlist_text_title">Описание плейлиста</div>
+        <span  class="field">Название: </span>
+        <input type="text" name="" value="" class="view_title" id="view_title" placeholder="Введите название...">
+        <span class="field">Статус: </span>
+        <div class="view_status" id="view_status"></div>
+        <span class="field">Описание: </span>
+        <textarea name="name" class="view_description" id="view_description" placeholder="Введите описание..."></textarea>
+      </div>
+      <div class="all_content">
+        <div class="all_content_title">Контент</div>
+        <div class="all_content_container">
+          <div class="playlist_content">
+            <div class="playlist_content_title">Содержание плейлиста</div>
+            <div class="playlist_content_container" id="playlist_content_container"></div>
+          </div>
+          <div class="db_content">
+            <div class="db_content_title">Содержание базы данных</div>
+            <div class="db_content_container" id="db_content_container"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="save_send">
+          <button type="button" class="save_send_btn" name="button" onclick="PlaylistSend()">Сохранить изменения</button>
+          <button type="button" class="save_send_btn" name="button" onclick="AddDeviceForPlaylist()">Назначить исполнителя</button>
+      </div>
+    </div>
+
   </section>
 
 </body>

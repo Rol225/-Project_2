@@ -37,7 +37,12 @@ function PrintDevice(device){
 
   document.getElementById('ListContent').innerHTML = '';
   for (let i in data){
-    document.getElementById('ListContent').innerHTML += '<div class="list_item item--devices" onclick="Device_info('+i+',\''+device+'\')"><div class="item_status_light item_status_light--device" style="background:'+data[i].status+'"></div><div class="item_descriptions item_descriptions--device"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].statusText+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].description+'</span></div></div></div>'
+    let color
+    let statusText
+    if(data[i].status == 0){color='style="background: #CC5252;"'; statusText='не в сети'}
+    else if(data[i].status == 1){color='style="background: #4FB93E;"'; statusText='в сети/подключён'}
+    else if(data[i].status == 2){color='style="background: #EBC747;"'; statusText='в сети'}
+    document.getElementById('ListContent').innerHTML += '<div class="list_item item--devices" onclick="Device_info('+i+',\''+device+'\')"><div class="item_status_light item_status_light--device" '+color+'"></div><div class="item_descriptions item_descriptions--device"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+statusText+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data[i].description+'</span></div></div></div>'
   }
 }
 /*------Устройства/каналы--------*/

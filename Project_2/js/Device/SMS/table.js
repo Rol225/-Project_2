@@ -138,8 +138,13 @@ function Device_info(IdElementNew, device){
     // Сортировка и вывод таблицы
     Sort(device, sortProperty, 1);
     // Секция информации о канале/устройстве
+    let color
+    let statusText
+    if(data.status == 0){color='style="background: #CC5252;"'; statusText='не в сети'}
+    else if(data.status == 1){color='style="background: #4FB93E;"'; statusText='в сети/подключён'}
+    else if(data.status == 2){color='style="background: #EBC747;"'; statusText='в сети'}
     document.getElementById('view_list_item').innerHTML = '';
-    document.getElementById('view_list_item').innerHTML += '<div class="view_list_item_start_end_btn"><button type="button" class="view_list_item_end_btn">END</button><button class="view_list_item_start_btn">START</button></div><div class="item_status_light item_view_status_light_device" style="background:'+data.status+'"></div><div class="item_descriptions item_descriptions_view"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.statusText+'</span></div><div class="item_descriptions_text item_view_descriptions_text">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.description+'</span></div></div>'
+    document.getElementById('view_list_item').innerHTML += '<div class="view_list_item_start_end_btn"><button type="button" class="view_list_item_end_btn">END</button><button class="view_list_item_start_btn">START</button></div><div class="item_status_light item_view_status_light_device" '+color+'></div><div class="item_descriptions item_descriptions_view"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+statusText+'</span></div><div class="item_descriptions_text item_view_descriptions_text">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.description+'</span></div></div>'
 
   }
 /*---Информация о каналах СМС---*/
