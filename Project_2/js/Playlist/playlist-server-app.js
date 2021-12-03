@@ -40,7 +40,7 @@ function Request(method, url, body = null){
   }
 /*---Получение - Отправка данных---*/
 
-function PlaylistSend(){
+function PlaylistSend(option){
   let test = 0
   NewPlaylist.name = document.getElementById('view_title').value
   NewPlaylist.description = document.getElementById('view_description').value
@@ -49,12 +49,30 @@ function PlaylistSend(){
   test += Validation('text', NewPlaylist.description)
   test += Validation('array', NewPlaylist.item)
 
-  if(test==3){
-    Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylist)
+  if(option == 1){
+    if(test==3){
+      Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylist)
+    }
+    else{
+      console.log('Ошибка не заполненно поле')
+    }
   }
-  else{
-    console.log('Ошибка не заполненно поле')
+  else if(option == 2){
+    test += Validation('array', Devices)
+    if(test==4){
+      let NewPlaylistMod_2={
+        name: NewPlaylist.name,
+        description: NewPlaylist.description,
+        item: NewPlaylist.item,
+        devices: Devices
+      }
+      Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylistMod_2)
+    }
+    else{
+      console.log('Ошибка не заполненно поле')
+    }
   }
+
 }
 
 function Validation(input, field){

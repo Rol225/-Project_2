@@ -34,7 +34,7 @@
         <span class="field">Описание: </span>
         <textarea name="name" class="view_description" id="view_description" placeholder="Введите описание..."></textarea>
       </div>
-      <div class="all_content">
+      <div class="all_content" id="all_content">
         <div class="all_content_title">Контент</div>
         <div class="all_content_container">
           <div class="playlist_content">
@@ -48,12 +48,22 @@
         </div>
       </div>
 
-      <div class="save_send">
-          <button type="button" class="save_send_btn" name="button" onclick="PlaylistSend()">Сохранить изменения</button>
-          <button type="button" class="save_send_btn" name="button" onclick="AddDeviceForPlaylist()">Назначить исполнителя</button>
+      <div class="all_device" id="all_device">
+        <div class="all_device_title">Исполнитель</div>
+        <div class="all_device_container">
+          <div class="playlist_device">
+            <div class="playlist_device_title">Исполнители плейлиста</div>
+            <div class="playlist_device_container" id="playlist_device_container"></div>
+          </div>
+          <div class="db_device">
+            <div class="db_device_title">Список всех исполнителей</div>
+            <div class="db_device_container" id="db_device_container"></div>
+          </div>
+        </div>
       </div>
-    </div>
 
+      <div class="save_send" id="save_send"></div>
+    </div>
   </section>
 
 </body>
