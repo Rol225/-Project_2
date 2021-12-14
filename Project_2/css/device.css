@@ -1,0 +1,475 @@
+body{
+  background: transparent;
+  margin: 0 auto;
+}
+button{
+    cursor: pointer;
+}
+input{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+input, input:focus-visible{
+    outline: none;
+    opacity: 0.9;
+}
+textarea{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+/*Nav*/
+.nav{
+  width: 100%;
+  background: #473F3F;
+}
+.nav_list_item{
+  width: 140px;
+  height: 30px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #ffff;
+  background: #4A4545;
+  border: none;
+  padding: 0;
+  transition: .2s linear;
+}
+.nav_list_item:hover{
+  background: #5A5656
+}
+/*Search*/
+.global_search{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.tool_search{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 450px;
+  background: #473F3F;
+  position: relative;
+}
+.no_bg{
+  background: transparent;
+}
+.search_device{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 6px;
+  color: #ffff;
+  margin-left: 30%;
+  cursor: default;
+}
+.input_search{
+  width: 100%;
+  max-width: 305px;
+  height: 25px;
+  padding: 0px 12px;
+  opacity: 0.3;
+  cursor: help;
+  margin-top: 6px;
+}
+.search_icon_list_btn, .search_sort_btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: .2s linear;
+    margin-left: 10px;
+    height: 36px;
+}
+.search_icon_list_btn:hover, .search_sort_btn:hover{
+    background: #c7c6c60d;
+}
+.search_icon_list_hr {
+    width: 23px;
+    height: 4px;
+    border: 0px solid;
+    background: #ffffff49;
+    border-radius: 20px;
+    margin: 3px auto;
+    padding: 0;
+}
+.search_sort_btn {
+    font-size: 24px;
+    font-family: inherit;
+    text-align: center;
+    color: #ffffff49;
+}
+.rtrey {
+  border: 18px solid #473f3f;
+  border-right: 18px solid #3fff9400;
+  border-bottom: 18px solid #21c6d700;
+  margin-left: 127px;
+  position: absolute;
+  right: -36px;
+  top: 0px;
+}
+.devices-playlist{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+/*--------------List-----------*/
+.list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 95.9vh;
+    max-width: 400px;
+    background: #685858c7;
+    position: relative;
+}
+.list_content{
+    width: 92%;
+    padding-top: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.list_content::-webkit-scrollbar {
+    width: 12px;
+}
+.list_content::-webkit-scrollbar-thumb {
+    background-color: #888585;
+    border-radius: 20px;
+    border: 3px solid #685858;
+}
+.list_item{
+    display: flex;
+    flex-wrap: nowrap;
+    background: #63616166;
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 311px;
+    justify-content: space-between;
+    border: 5px solid transparent;
+    transition: .2s linear;
+    margin-bottom: 8px;
+    cursor: zoom-in;
+}
+.list_item:first-child{
+    margin-top: -10px;
+}
+.list_item:hover{
+    border: 5px solid #949494;
+}
+.item_status_light{
+    width: 70px;
+    height: 70px;
+    background: #c9c8c8;
+}
+.item_view_status_light_device{
+    margin: 0 15px;
+}
+.list_nav {
+    width: 100%;
+    max-width: 30px;
+    background: #473F3F;
+    z-index: 2;
+}
+.list_nav_item {
+    width: 100%;
+    min-height: 125px;
+    padding: 10px 5px;
+    background: #4A4545;
+    border: 1px solid transparent;
+    margin-top: 3px;
+    transition: .3s linear;
+}
+.list_nav_item:first-child{
+    margin-top: 0px;
+}
+.list_nav_item_symbol {
+    display: block;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    transform: rotate(90deg);
+    margin: -5px;
+    color: rgb(255, 255, 255);
+}
+.list_nav_item:hover{
+    border-radius: 2px 2px 22px 0px;
+    background: #5A5656;
+}
+.item_descriptions {
+    width: 100%;
+    font-size: 13px;
+    max-width: 216px;
+}
+.item_descriptions_view{
+    width: auto;
+    max-width: none;
+}
+.item_descriptions_text{
+    color: #FFFFFF;
+}
+.item_descriptions_text_meaning{
+    color: #DDC1C1;
+}
+.roll{
+    display: flex;
+    height: 83px;
+    width: 36px;
+    background: none;
+    border: 1px solid transparent;
+    background: #473F3F;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    position: absolute;
+    z-index: 1;
+    top:39%;
+    right: -34px;
+    margin-left: 10px;
+    opacity: .3;
+    transition: .2s linear;
+}
+.roll:hover{
+    opacity: .5;
+}
+.roll_hr{
+    width: 3px;
+    height: 44px;
+    border: 0px solid;
+    background: #ffffff49;
+    border-radius: 20px;
+    margin: 17px auto;
+    padding: 0;
+}
+/*---------*/
+.info{
+    display: none;
+    width: 74%;
+    margin-left: 25px;
+    margin-top: 30px;
+}
+.view_list_item{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+.view_list_item_start_end_btn{
+    width: 100%;
+    max-width: 70px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.view_list_item_start_btn, .view_list_item_end_btn{
+    width: 100%;
+    height: 35px;
+    border: none;
+    color: #FFFFFF;
+    transition: .2s linear;
+    opacity: .7;
+}
+.view_list_item_start_btn:hover, .view_list_item_end_btn:hover{
+    opacity: 1;
+}
+.view_list_item_start_btn{
+    background: #35C628;
+}
+.view_list_item_end_btn{
+    background: #C62828;
+}
+.view_list_item_hr{
+    width: 100%;
+    height: 1px;
+    border: none;
+    background: #cacaca;
+}
+.view_content{
+  display: block;
+}
+.table{
+    width: 100%;
+    text-align: center;
+    transition: .5s linear;
+  }
+.th{
+  cursor: default;
+}
+.tr{
+    background: #e2e2e2c9;
+}
+.tr-red{
+  background: #ff00005e;
+  color: #ffffffc4;
+}
+.tr-yelow{
+  background: #df800aa6;
+  color: #ffffffd9;
+}
+.td {
+      overflow-x: auto;
+      max-width: 92px;
+      font-weight: 400;
+}
+.tdStatusOK{
+  background: URL("../icon/ok.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 40px;
+}
+.tdStatusUnknow{
+  background: URL("../icon/unknow.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 36px;
+}
+.tdStatusNo{
+  background: URL("../icon/no.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 40px;
+}
+.tdActionDelete{
+  background: URL("../icon/delete.png") center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: .2s linear;
+}
+.tdActionDelete:hover{
+  opacity: 1;
+}
+.th{
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #3e3e3e;
+}
+.p_margin_0{
+      margin: 0;
+}
+.th_left{
+    border-top-left-radius: 20px;
+}
+.th_right{
+    border-top-right-radius: 20px;
+}
+
+/*-------------Send SMS display 2----------------*/
+.send_message{
+  display: none;
+  grid-template-areas: "item_1 item_2"
+                      "item_3 item_3";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 50px;
+  justify-items: center;
+}
+.send_message_item_1{
+  color: #ffff;
+  grid-area: item_1;
+  width: 100%
+}
+.send_message_arrow{
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  margin: 5px 0;
+}
+.send_message_item_title {
+    width: 100%;
+    max-width: 410px;
+    text-align: center;
+    margin: 15px 0;
+}
+.send_message_arrow_input{
+  height: 20px;
+}
+.send_message_item_2{
+  grid-area: item_2;
+  width: 100%
+}
+.send_message_item_2_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #c1bfbf;
+}
+.clear {
+    background: #f96767;
+    border: 0;
+    padding: 8px;
+    transition: .2s linear;
+}
+.clear:hover{
+  background: #f14c4c;
+}
+.input_massage {
+  width: 100%;
+  height: 295px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  border: 0;
+  padding: 0;
+}
+.load_shablon {
+    border: 0;
+    background: #9d9d9d;
+    transition: .2s linear;
+}
+.load_shablon:hover{
+    background: #b9b6b6;
+}
+.send_message_item_3{
+  grid-area: item_3;
+}
+.send_sms_btn{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 7px;
+  background: #0ab7af;
+  color: #fff;
+  border: 0;
+  border-radius: 17px;
+  padding: 8px 65px;
+  transition: .2s linear;
+}
+.send_sms_btn:hover{
+  background: #0eddd3;
+}
+/*-----------------------Top lef Right btn-----------------------------------------*/
+.TopLeftRightBtn{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    position: absolute;
+    top: -4px;
+    left: 55rem;
+}
+.TopLeftRightBtn_btn{
+    width: 225px;
+    height: 38px;
+    background: #8A8A8A;
+    border: 2px solid #8A8A8A;
+    color: #C1C1C1;
+    transition: .2s linear;
+}
+.TopLeftRightBtn_btn:hover{
+    opacity: .6;
+    color: #FFFFFF;
+}
+#TopLeftRightBtn_CMC, #TopLeftRightBtn_Email{
+  display: none;
+}
+.Left_button{
+    background: #7F9860;
+    border:#7F9860;
+    color: #E5E5E5;
+    border-bottom-left-radius: 90px;
+}
+.Right_button{
+    border-bottom-right-radius: 90px;
+}

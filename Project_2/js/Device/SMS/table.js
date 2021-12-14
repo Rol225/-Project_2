@@ -17,7 +17,7 @@ function Sort(device, sortProperty, order){
       }
 
       if(sortProperty == 'time'){
-        data.item.sort((prev, next) => prev.date.time - next.date.time);
+        data.item.sort((prev, next) => prev.date.time.localeCompare(next.date.time));
       }
       else if(sortProperty=='status'){
         data.item.sort((prev, next) => prev.status - next.status);
@@ -52,7 +52,7 @@ function Sort(device, sortProperty, order){
       }
 
       if(sortProperty == 'time'){
-        data.item.sort((next, prev) => prev.date.time - next.date.time);
+        data.item.sort((next, prev) => prev.date.time.localeCompare(next.date.time));
       }
       else if(sortProperty=='status'){
         data.item.sort((next, prev) => prev.status - next.status);
@@ -85,8 +85,6 @@ function PrintOnWindow(data, newStr){
   // В таблицу
   document.getElementById('rezult').innerHTML = newStr;
   for (let i in data.item){
-    // Формирование времени в удобочитаемом формате
-    time = data.item[i].date.time[0]+''+data.item[i].date.time[1]+':'+data.item[i].date.time[2]+''+data.item[i].date.time[3]
     // Не отправленно
     if(data.item[i].status == 0){
       color = '<tr class="tr tr-red">'
@@ -103,7 +101,7 @@ function PrintOnWindow(data, newStr){
       icon = '<div class="tdStatusUnknow"></div>'
     }
     // Вывод
-    document.getElementById('rezult').innerHTML += color+'<td class="td">'+ time +'</td><td class="td">'+ data.item[i].group +'</td><td class="td">'+ data.item[i].name+'</td><td class="td">'+ data.item[i].recipient+'</td><td class="td">'+ data.item[i].content+'</td><td class="td">'+icon+'</td><td class="td"><div class="tdActionDelete"></div></td><td class="td"><div class="tdActionDelete"></div></td></tr>';
+    document.getElementById('rezult').innerHTML += color+'<td class="td">'+ data.item[i].date.time +'</td><td class="td">'+ data.item[i].group +'</td><td class="td">'+ data.item[i].name+'</td><td class="td">'+ data.item[i].recipient+'</td><td class="td">'+ data.item[i].content+'</td><td class="td">'+icon+'</td><td class="td"><div class="tdActionDelete"></div></td><td class="td"><div class="tdActionDelete"></div></td></tr>';
    }
 }
 /*---Выводы в таблицы---*/

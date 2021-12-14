@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="../css/standart.css">
+        <link rel="stylesheet" href="../css/device.css">
         <script src="../js/module.js" defer></script>
         <script src="../js/server-app.js" defer></script>
         <script src="../js/Device/SMS/info-item.js" defer></script>
         <script src="../js/Device/SMS/table.js" defer></script>
     </head>
-    <section class="global_search">
+    <section class="search">
         <div class="tool_search">
             <input type="text" class="input_search input_search_global" placeholder="Найти..." id="search_global">
             <button class="search_icon_list_btn">
@@ -80,14 +80,13 @@
             <hr class="view_list_item_hr">
             <div class="view_content" id="view_content">
                 <div class="view_search">
-                    <div class="tool_search">
+                    <div class="tool_search no_bg">
                         <input type="text" class="input_search input_search_global" placeholder="Найти..." id="search_global">
                         <button class="search_icon_list_btn">
                             <hr class="search_icon_list_hr">
                             <hr class="search_icon_list_hr">
                             <hr class="search_icon_list_hr">
                         </button>
-                        <div class="rtrey"></div>
                     </div>
                 </div>
 
@@ -114,7 +113,7 @@
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Одному человеку</span>
-                    <input type="tel" class="send_message_arrow_input"  placeholder="Номер..." id="sendTelephon">
+                    <input type="tel" class="send_message_arrow_input"  placeholder="Номер..." id="sendTelephon" pattern="2[0-9]{3}-[0-9]{3}">
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Группе людей</span>
