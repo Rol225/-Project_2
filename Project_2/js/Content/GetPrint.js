@@ -1,4 +1,4 @@
-
+/*Печать всего контента по выбранному устройству*/
 function AllContentPrint(device, data){
   document.getElementById('search_section').style.display='flex'
   document.getElementById('section_all_content').style.display='block'
@@ -32,6 +32,7 @@ function AllContentPrint(device, data){
     document.getElementById('list').innerHTML += color+'<div class="content_title">'+data[i].name+'</div><div class="content_verification">'+verification+'</div><div class="content_description"><span class="content_description_static">Контент: </span><span class="content_description_text">'+data[i].content+'</span></div></div>';
   }
 }
+/*Печать окна просмотра контента*/
 function ContentView(id){
   for(let i in Data){
     if(id == Data[i].id){
@@ -56,21 +57,26 @@ function ContentView(id){
     }
   }
 }
+/*Печать окна добавления контента*/
 function ContentAddPage(device){
   if (device == 'SMSDevice'){
     document.getElementById('contentSMS_view').style.display = 'block'
+    document.getElementById('contentSMS_name').value = null
     document.getElementById('contentSMS_status').innerHTML = 'Не проверенно';
+    document.getElementById('contentSMS_content').value = null
     document.getElementById('contentSMS_status').style.color = '#d99a0dbf';
     document.getElementById('contentSMS_save').innerHTML = '<button type="button" class="contentSMS_save_btn" onclick="SendContent(\'SMSDevice\')">Сохранить как новый контент</button>'
     document.getElementById('contentSMS_save').style.margin = '15px 0 0 157px'
   }
 }
+/*Закрытие окна просмотра контента*/
 function ContentViewClose(device){
   if (device == 'SMSDevice'){
     document.getElementById('contentSMS_view').style.display = null
     Content(3)
   }
 }
+/*Обработка нажатий клавиш в input*/
 function BgInput(id){
   document.getElementById(id).style.background = null
 }
