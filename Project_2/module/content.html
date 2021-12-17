@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/content.css">
+    <script src="../js/module.js" defer></script>
+    <script src="../js/Content/content-server-app.js" defer></script>
+    <script src="../js/Content/GetPrint.js" defer></script>
+</head>
+<body>
+
+  <section class="nav">
+      <div class="nav_list">
+        <button type="button" name="button" class="nav_list_item">Табло</button>
+        <button type="button" name="button" class="nav_list_item">Динамики</button>
+        <button type="button" name="button" class="nav_list_item" onclick="Content(3)">СМС</button>
+        <button type="button" name="button" class="nav_list_item">E-mail</button>
+      </div>
+  </section>
+
+  <section class="search" id="search_section"></section>
+
+  <section class="all_content" id="section_all_content">
+    <div class="container" id="list"></div>
+  </section>
+
+  <section class="contentSMS_view" id="contentSMS_view">
+    <div class="contentSMS_view_page">
+      <div class="contentSMS_view_close" onclick="ContentViewClose('SMSDevice')">&#10006</div>
+      <input type="text" value="" class="contentSMS_name" placeholder="Имя..." id="contentSMS_name" onclick="BgInput('contentSMS_name')" oninput="BgInput('contentSMS_name')" required>
+      <div class="contentSMS_status">
+        <span>Статус:</span>
+        <span id="contentSMS_status"></span>
+      </div>
+      <textarea rows="8" cols="80" class="contentSMS_content" placeholder="Контент..." id="contentSMS_content" onclick="BgInput('contentSMS_content')" oninput="BgInput('contentSMS_content')" required></textarea>
+      <div class="contentSMS_save" id="contentSMS_save">
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

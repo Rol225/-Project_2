@@ -23,10 +23,11 @@ textarea{
 .nav{
   width: 100%;
   background: #473F3F;
+  height: 3.2vh;
 }
 .nav_list_item{
   width: 140px;
-  height: 30px;
+  height: 3.2vh;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 14px;
   font-weight: 500;
@@ -44,6 +45,7 @@ textarea{
 .search{
   display: none;
   flex-wrap: nowrap;
+  height: 4vh;
 }
 .search_module{
   display: flex;
@@ -54,7 +56,7 @@ textarea{
 }
 .search_device{
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size: 30px;
+  font-size: 3vh;
   font-weight: 500;
   letter-spacing: 6px;
   color: #ffff;
@@ -64,26 +66,26 @@ textarea{
 .search_input{
   width: 100%;
   max-width: 305px;
-  height: 25px;
+  height: 3vh;
   padding: 0px 12px;
   opacity: 0.3;
   cursor: help;
-  margin-top: 6px;
+  margin-top: auto;
+  margin-bottom: 0px;
 }
 .rtrey {
-  border: 20px solid #473f3f;
-  border-right: 20px solid #00000000;
-  border-bottom: 20px solid #00000000;
-  margin-left: 127px;
+  border: 2vh solid #473f3f;
+  border-right: 2vh solid #00000000;
+  border-bottom: 2vh solid #00000000;
   position: absolute;
-  right: -40px;
+  right: -4.0vh;
   top: 0px;
 }
 /*All Playlist*/
 .all_playlists{
   display: block;
-  height: 874px;
-  margin: 20px auto 0 auto;
+  height: 89.6vh;
+  margin: 1vh auto 0 auto;
   overflow: overlay;
 }
 .all_playlists::-webkit-scrollbar {

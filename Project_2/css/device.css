@@ -23,10 +23,11 @@ textarea{
 .nav{
   width: 100%;
   background: #473F3F;
+  height: 3.2vh;
 }
 .nav_list_item{
   width: 140px;
-  height: 30px;
+  height: 3.2vh;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 14px;
   font-weight: 500;
@@ -44,6 +45,7 @@ textarea{
 .global_search{
   display: flex;
   flex-wrap: nowrap;
+  height: 4vh;
 }
 .tool_search{
   display: flex;
@@ -67,11 +69,12 @@ textarea{
 .input_search{
   width: 100%;
   max-width: 305px;
-  height: 25px;
+  height: 3vh;
   padding: 0px 12px;
   opacity: 0.3;
   cursor: help;
-  margin-top: 6px;
+  margin-top: auto;
+  margin-bottom: 0px;
 }
 .search_icon_list_btn, .search_sort_btn {
     background: none;
@@ -79,14 +82,14 @@ textarea{
     border-radius: 6px;
     transition: .2s linear;
     margin-left: 10px;
-    height: 36px;
+    height: 4vh;
 }
 .search_icon_list_btn:hover, .search_sort_btn:hover{
     background: #c7c6c60d;
 }
 .search_icon_list_hr {
     width: 23px;
-    height: 4px;
+    height: 0.4vh;
     border: 0px solid;
     background: #ffffff49;
     border-radius: 20px;
@@ -100,12 +103,11 @@ textarea{
     color: #ffffff49;
 }
 .rtrey {
-  border: 18px solid #473f3f;
-  border-right: 18px solid #3fff9400;
-  border-bottom: 18px solid #21c6d700;
-  margin-left: 127px;
+  border: 2vh solid #473f3f;
+  border-right: 2vh solid #00000000;
+  border-bottom: 2vh solid #00000000;
   position: absolute;
-  right: -36px;
+  right: -4.0vh;
   top: 0px;
 }
 .devices-playlist{
@@ -198,6 +200,7 @@ textarea{
 }
 .item_descriptions {
     width: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 13px;
     max-width: 216px;
 }
@@ -359,7 +362,7 @@ textarea{
   grid-template-areas: "item_1 item_2"
                       "item_3 item_3";
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 0fr;
   grid-row-gap: 50px;
   justify-items: center;
 }
@@ -451,7 +454,7 @@ textarea{
 }
 .TopLeftRightBtn_btn{
     width: 225px;
-    height: 38px;
+    height: 4vh;
     background: #8A8A8A;
     border: 2px solid #8A8A8A;
     color: #C1C1C1;
