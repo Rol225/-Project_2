@@ -51,6 +51,7 @@ function PlaylistSend(option){
 
   if(option == 1){
     if(test==3){
+      console.log(NewPlaylist)
       Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylist)
     }
     else{
@@ -66,6 +67,7 @@ function PlaylistSend(option){
         item: NewPlaylist.item,
         devices: Devices
       }
+      console.log(NewPlaylist)
       Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylistMod_2)
     }
     else{

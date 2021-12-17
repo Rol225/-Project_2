@@ -145,8 +145,8 @@ textarea{
   left: 0;
 }
 @keyframes blue {
-  0%{background-position: -1500px;}
-  100%{background-position: 1500px;}
+  0%{background-position: -1670px;}
+  100%{background-position: 1670px;}
 }
 .cloud--pink{
   background: url("../icon/pink.png") center no-repeat;
@@ -155,6 +155,6 @@ textarea{
   right: 0;
 }
 @keyframes pink {
-  0%{background-position: 1500px;}
-  100%{background-position: -1500px;}
+  0%{background-position: 1670px;}
+  100%{background-position: -1670px;}
 }

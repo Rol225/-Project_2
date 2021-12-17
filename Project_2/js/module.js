@@ -11,7 +11,11 @@ function PlaylistModule(){
   document.getElementById('welcome').innerHTML = '<div class="hellow_text hellow_text_welcome" id="welcome">Добро пожаловать</div>'
   document.getElementById('module').innerHTML = '<iframe src="./module/playlist.html" frameborder="0" seamless></iframe>';
 }
-
+function ConfigurationModule(){
+  document.getElementById('Main_hellow').style.display='none'
+  document.getElementById('welcome').innerHTML = '<div class="hellow_text hellow_text_welcome" id="welcome">Добро пожаловать</div>'
+  document.getElementById('module').innerHTML = '<iframe src="./module/configuration.html" frameborder="0" seamless></iframe>';
+}
 /*---Смена модулей---*/
 /*Выпадающий список*/
 function Roll(option){

@@ -10,12 +10,14 @@
     <script src="./js/authorization.js" defer></script>
     <title>Терминал диспетчера</title>
 </head>
-<body>
+<div id="BgColor"></div>
+<body id="MainBody">
     <section class="bar" id="bar">
         <div class="nav_bar">
-            <span class="nav_item">Настройки</span>
+            <span class="nav_item" onclick="ConfigurationModule()">Настройки</span>
             <span class="nav_item" onclick="PlaylistModule()">Плейлисты</span>
             <span class="nav_item" onclick="DeviceModule()">Устроиства</span>
+            <span class="nav_item">Контент</span>
             <span class="nav_item">История</span>
             <span class="nav_item">О программе</span>
         </div>
@@ -32,8 +34,8 @@
       <div class="hellow_text hellow_text_welcome" onclick="StartAuthorization()" id="welcome">Добро пожаловать</div>
     </div>
 
-    <div class="cloud cloud--blue"></div>
-    <div class="cloud cloud--pink"></div>
+    <div class="cloud cloud--blue" id="AnimationImg_1"></div>
+    <div class="cloud cloud--pink" id="AnimationImg_2"></div>
 
     <div id="module"></div>
 

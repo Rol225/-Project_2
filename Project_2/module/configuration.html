@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/configuration.css">
+    <script src="../js/module.js" defer></script>
+    <script src="../js/conf.js" defer></script>
+</head>
+<body>
+
+<section class="nav">
+  <ul>
+    <li class="settings_li" onclick="Settings(1)" id="background_setting">Фон</li>
+    <li class="settings_li" onclick="Settings(2)" id="language_setting">Язык</li>
+    <li class="settings_li" onclick="Settings(3)" id="server_setting">Сервер</li>
+  </ul>
+</section>
+
+<section class="setting" id="setting_1">
+  <div class="setting_item">
+    <div class="title">Тема</div>
+    <div class="listTopics" id="listTopics">
+      <div class="topic" onclick="SettingsTopics('Black')">
+        <div class="topic_title">Black</div>
+        <div class="topic_demonstrations topic_Black"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('Indigo')">
+        <div class="topic_title">Indigo</div>
+        <div class="topic_demonstrations topic_Indigo"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('DarkSlateBlue')">
+        <div class="topic_title">DarkSlateBlue</div>
+        <div class="topic_demonstrations topic_DarkSlateBlue"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('MediumSlateBlue')">
+        <div class="topic_title">MediumSlateBlue</div>
+        <div class="topic_demonstrations topic_MediumSlateBlue"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('SaddleBrown')">
+        <div class="topic_title">SaddleBrown</div>
+        <div class="topic_demonstrations topic_SaddleBrown"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('DarkSlateGray')">
+        <div class="topic_title">DarkSlateGray</div>
+        <div class="topic_demonstrations topic_DarkSlateGray"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('Grey')">
+        <div class="topic_title">Silver</div>
+        <div class="topic_demonstrations topic_Grey"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('LightGray')">
+        <div class="topic_title">LightGray</div>
+        <div class="topic_demonstrations topic_LightGray"></div>
+      </div>
+      <div class="topic" onclick="SettingsTopics('LavenderBlush')">
+        <div class="topic_title">LavenderBlush</div>
+        <div class="topic_demonstrations topic_LavenderBlush"></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="setting_item">
+    <div class="title">Анимация заднего фона</div>
+    <form class="" method="post" class="setting_animation">
+      <p>Анимация<input type="checkbox" name="" id="setting_animation_active" onclick="CheckboxAnimations(1)"></p>
+      <p>Статичное изображение<input type="checkbox" name="" id="setting_animation_static" onclick="CheckboxAnimations(2)"></p>
+      <div class="static_img_list">
+        <div class="static_img_list_item" onclick="StaticImg('around')">
+          <div class="static_img_list_item_title">Вид 1</div>
+          <div class="static_img static_img_blue_view_1"></div>
+          <div class="static_img static_img_red_view_1"></div>
+        </div>
+        <div class="static_img_list_item" onclick="StaticImg('centet')">
+          <div class="static_img_list_item_title">Вид 2</div>
+          <div class="static_img static_img_blue_view_2"></div>
+          <div class="static_img static_img_red_view_2"></div>
+        </div>
+        <div class="static_img_list_item" onclick="StaticImg('none')">
+          <div class="static_img_list_item_title">Вид 3</div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="setting_item">
+    <div class="title">Яркость</div>
+    <input type="range" min="1" max="100" value="100" class="slider_setting" id="slider_setting" oninput="SliderSetting()">
+  </div>
+</section>
+
+</body>
+</html>

@@ -3,9 +3,18 @@ const url = require('url');
 const {app, BrowserWindow, screen} = require('electron');
 
 let win;
+
 function createWindow(){
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
-  win = new BrowserWindow({width, height});
+  win = new BrowserWindow({
+    width,
+    height,
+    //frame: false,
+      webPreferences: {
+         nodeIntegration: true,
+         contextIsolation: false
+      }
+  });
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
@@ -18,6 +27,5 @@ function createWindow(){
     win = null;
   });
 }
-
 
 app.on('ready', createWindow);

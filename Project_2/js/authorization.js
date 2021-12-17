@@ -12,3 +12,6 @@ function EndAuthorization(){
   document.getElementById('authorization').style.opacity='0'
   document.getElementById('bar').style.display="block"
 }
+document.getElementById('AnimationImg_1').value=1       // Статика/Динамика фона
+document.getElementById('BgColor').value='0,0,0'        // Цвет фона
+document.getElementById('MainBody').value=100           // Прозрачность для ползунка
