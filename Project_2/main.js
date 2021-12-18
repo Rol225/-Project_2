@@ -21,8 +21,8 @@ function createWindow(){
     slashes: true
   }));
 
-  //win.setMenu(null)
-  win.webContents.openDevTools();
+  win.setMenu(null)
+  //win.webContents.openDevTools();
   win.on('cloused', () => {
     win = null;
   });

@@ -113,43 +113,44 @@
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Одному человеку</span>
-                    <input type="tel" class="send_message_arrow_input"  placeholder="Номер..." id="sendTelephon" pattern="2[0-9]{3}-[0-9]{3}">
+                    <input type="tel" class="send_message_arrow_input"  placeholder="Номер..." id="sendTelephon" pattern="[0-9]{11}" onclick="SendSMSBg()" required>
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Группе людей</span>
-                    <input type="text" class="send_message_arrow_input" placeholder="Группа..." id="sendGroup">
+                    <input type="text" class="send_message_arrow_input" placeholder="Группа..." id="sendGroup" onclick="SendSMSBg()" required>
                 </div>
                 <div class="send_message_item_title">
                   Время
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Время отправления в ручную</span>
-                    <input type="time" class="send_message_arrow_input"  placeholder="00.00" id="sendTime">
+                    <input type="time" class="send_message_arrow_input"  placeholder="00.00" id="sendTime" onchange="SendTime()" onchange="SendSMSBg()" required>
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Отправление по событию</span>
-                    <input type="" class="send_message_arrow_input"  placeholder="Событие..." id="sendTriger">
+                    <input type="" class="send_message_arrow_input"  placeholder="Событие..." id="sendTriger" onclick="SendSMSBg()" required>
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Ограничение по времени</span>
-                    <input type="time" class="send_message_arrow_input" placeholder="00.00" id="sendTimeEnd">
+                    <input type="time" class="send_message_arrow_input" placeholder="00.00" id="sendTimeEnd" onchange="SendSMSBg()" required>
                 </div>
                 <div class="send_message_item_title">
-                  Не обязательное поле
+                  Имя
                 </div>
                 <div class="send_message_arrow">
-                    <input type="text" class="send_message_arrow_input" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px" id="sendName">
+                    <input type="text" class="send_message_arrow_input" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px" id="sendName" onclick="SendSMSBg()" required>
                 </div>
               </div>
               <div class="send_message_item_2">
                 <div class="send_message_item_2_header">
                   <button type="button" class="load_shablon" name="button" id="loadShablon">Загрузить шаблон</button>
-                  <button type="button" class="clear" name="button" id="clearMessage">C</button>
+                  <button type="button" class="clear" name="button" id="clearMessage" onclick="ClearText()">C</button>
                 </div>
-                <textarea type="text" class="input_massage" id="sendText"></textarea>
+                <textarea type="text" class="input_massage" id="sendText" placeholder="Сообщение..." onclick="SendSMSBg()" required></textarea>
               </div>
               <div class="send_message_item_3">
-                <button type="button" name="button" class="send_sms_btn" id="sendBtn" onclick="SendMassege('SMSDevice')">Сохранить</button>
+                <button type="button" name="button" class="send_sms_btn" id="sendBtn" onclick="SendMassege('SMSDevice', 'save')">Сохранить новый контент</button>
+                <button type="button" name="button" class="send_sms_btn" id="sendBtn" onclick="SendMassege('SMSDevice', 'send')">Отправить на исполнение</button>
               </div>
             </div>
         </section>

@@ -144,5 +144,13 @@ function Device_info(IdElementNew, device){
     document.getElementById('view_list_item').innerHTML = '';
     document.getElementById('view_list_item').innerHTML += '<div class="view_list_item_start_end_btn"><button type="button" class="view_list_item_end_btn">END</button><button class="view_list_item_start_btn">START</button></div><div class="item_status_light item_view_status_light_device" '+color+'></div><div class="item_descriptions item_descriptions_view"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+statusText+'</span></div><div class="item_descriptions_text item_view_descriptions_text">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.description+'</span></div></div>'
 
+    SendSMSBg()
+    document.getElementById('sendTelephon').value = null;
+    document.getElementById('sendGroup').value = null;
+    document.getElementById('sendTime').value = null;
+    document.getElementById('sendTriger').value = null;
+    document.getElementById('sendTimeEnd').value = null;
+    document.getElementById('sendName').value = null;
+    document.getElementById('sendText').value = null;
   }
 /*---Информация о каналах СМС---*/

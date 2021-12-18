@@ -46,3 +46,16 @@ function PrintDevice(device){
   }
 }
 /*------Устройства/каналы--------*/
+/*Отчистка текста*/
+function ClearText(){
+  document.getElementById('sendText').value = null
+}
+function SendSMSBg(){
+  document.getElementById('sendTelephon').style.background = null;
+  document.getElementById('sendGroup').style.background = null;
+  document.getElementById('sendTime').style.background = null;
+  document.getElementById('sendTriger').style.background = null;
+  document.getElementById('sendTimeEnd').style.background = null;
+  document.getElementById('sendName').style.background = null;
+  document.getElementById('sendText').style.background = null;
+}
