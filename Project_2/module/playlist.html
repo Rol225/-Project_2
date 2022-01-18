@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../css/playlist.css">
+    <script src="../js/DataClasses.js" defer></script>
     <script src="../js/module.js" defer></script>
     <script src="../js/Playlist/playlist-server-app.js" defer></script>
     <script src="../js/Playlist/GetPrint.js" defer></script>
@@ -12,12 +13,22 @@
       <div class="nav_list">
         <button type="button" name="button" class="nav_list_item">Табло</button>
         <button type="button" name="button" class="nav_list_item">Динамики</button>
-        <button type="button" name="button" class="nav_list_item" onclick="Playlist(3)">СМС</button>
+        <button type="button" name="button" class="nav_list_item" onclick="PlaylistURL(3)">СМС</button>
         <button type="button" name="button" class="nav_list_item">E-mail</button>
       </div>
   </section>
 
   <section class="search" id="search_section"></section>
+
+  <div class="search_flag" id="search_flag">
+    <div class="flag_status_container" onchange="FlagStatusChek('playlistSMS', 'playlistSearch')">
+      <div class="flag_status_container_title">Статус</div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_All" id="flag_status_All" checked><label class="inner-label" for="flag_status_All">Все</label></div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_Ok" id="flag_status_Ok"><label class="inner-label" for="flag_status_Ok">Допущено</label></div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_Unknow" id="flag_status_Unknow"><label class="inner-label" for="flag_status_Unknow">Не проверено</label></div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_No" id="flag_status_No"><label class="inner-label" for="flag_status_No">Не допущено</label></div>
+    </div>
+  </div>
 
   <section class="all_playlists" id="section_all_playlists">
     <div class="container_playlist" id="list_playlist"></div>
@@ -27,12 +38,18 @@
     <div class="container_playlist">
       <div class="playlist_text">
         <div class="playlist_text_title">Описание плейлиста</div>
-        <span  class="field">Название: </span>
-        <input type="text" name="" value="" class="view_title" id="view_title" placeholder="Введите название...">
-        <span class="field">Статус: </span>
-        <div class="view_status" id="view_status"></div>
-        <span class="field">Описание: </span>
-        <textarea name="name" class="view_description" id="view_description" placeholder="Введите описание..."></textarea>
+        <div class="playlist_text_item">
+          <span  class="field">Название: </span>
+          <input type="text" name="" value="" class="view_title" id="view_title" placeholder="Введите название...">
+        </div>
+        <div class="playlist_text_item">
+          <div class="field">Статус: </div>
+          <div class="view_status" id="view_status"></div>
+        </div>
+        <div class="playlist_text_item">
+          <span class="field">Описание: </span>
+          <textarea name="name" class="view_description" id="view_description" placeholder="Введите описание..."></textarea>
+        </div>
       </div>
       <div class="all_content" id="all_content">
         <div class="all_content_title">Контент</div>
@@ -63,6 +80,7 @@
       </div>
 
       <div class="save_send" id="save_send"></div>
+      <div id="status_playlist_send">Успешно</div>
     </div>
   </section>
 

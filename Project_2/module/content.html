@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../css/content.css">
+    <script src="../js/DataClasses.js" defer></script>
     <script src="../js/module.js" defer></script>
     <script src="../js/Content/content-server-app.js" defer></script>
     <script src="../js/Content/GetPrint.js" defer></script>
@@ -12,12 +13,22 @@
       <div class="nav_list">
         <button type="button" name="button" class="nav_list_item">Табло</button>
         <button type="button" name="button" class="nav_list_item">Динамики</button>
-        <button type="button" name="button" class="nav_list_item" onclick="Content(3)">СМС</button>
+        <button type="button" name="button" class="nav_list_item" onclick="ContentURL(3)">СМС</button>
         <button type="button" name="button" class="nav_list_item">E-mail</button>
       </div>
   </section>
 
   <section class="search" id="search_section"></section>
+
+  <div class="search_flag" id="search_flag">
+    <div class="flag_status_container" onchange="FlagStatusChek('contentSMS', 'contentSearch')">
+      <div class="flag_status_container_title">Статус</div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_All" id="flag_status_All" checked><label class="inner-label" for="flag_status_All">Все</label></div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_Ok" id="flag_status_Ok"><label class="inner-label" for="flag_status_Ok">Допущено</label></div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_Unknow" id="flag_status_Unknow"><label class="inner-label" for="flag_status_Unknow">Не проверено</label></div>
+      <div><input class="flag_status" type="radio" name="flag_status" value="status_No" id="flag_status_No"><label class="inner-label" for="flag_status_No">Не допущено</label></div>
+    </div>
+  </div>
 
   <section class="all_content" id="section_all_content">
     <div class="container" id="list"></div>
@@ -27,6 +38,7 @@
     <div class="contentSMS_view_page">
       <div class="contentSMS_view_close" onclick="ContentViewClose('SMSDevice')">&#10006</div>
       <input type="text" value="" class="contentSMS_name" placeholder="Имя..." id="contentSMS_name" onclick="BgInput('contentSMS_name')" oninput="BgInput('contentSMS_name')" required>
+      <span><input type="text" id="contentSMS_send_status" readonly></span>
       <div class="contentSMS_status">
         <span>Статус:</span>
         <span id="contentSMS_status"></span>

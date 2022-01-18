@@ -1,156 +1,177 @@
-var IdElement
-
+var tableStr
 /*Сортировка*/
-function Sort(device, sortProperty, order){
-  if(order == 1){
-    if(device == 'SMSDevice' || device == 'EmailDevice'){
-      let data
-      let newStr
-      if(device == 'SMSDevice'){
-        data = DeviceDataSMS[IdElement]
-        data = DeviceDataSMS[IdElement]
-        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 2)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 2)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 2)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 2)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 2)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 2)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
-      }
-      else if(device == 'EmailDevice'){
-        data = DeviceDataEmail[IdElement]
-        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'EmailDevice\', \'time\', 2)">Время</th><th class="th" onclick="Sort(\'EmailDevice\', \'group\', 2)">Группа</th><th class="th" onclick="Sort(\'EmailDevice\', \'name\', 2)">Наименование</th><th class="th" onclick="Sort(\'EmailDevice\', \'recipient\', 2)">Кому</th><th class="th" onclick="Sort(\'EmailDevice\', \'content\', 2)">Текст</th><th class="th" onclick="Sort(\'EmailDevice\', \'status\', 2)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
-      }
-
-      if(sortProperty == 'time'){
-        data.item.sort((prev, next) => prev.date.time.localeCompare(next.date.time));
-      }
-      else if(sortProperty=='status'){
-        data.item.sort((prev, next) => prev.status - next.status);
-      }
-      else if(sortProperty=='recipient'){
-        if(device == 'SMSDevice'){data.item.sort((prev, next) => prev.recipient - next.recipient);}
-        else if(device == 'EmailDevice'){data.item.sort((prev, next) => prev.recipient.localeCompare(next.recipient));}
-      }
-      else if(sortProperty=='group'){
-        data.item.sort((prev, next) => prev.group.localeCompare(next.group));
-      }
-      else if(sortProperty=='name'){
-        data.item.sort((prev, next) => prev.name.localeCompare(next.name));
-      }
-      else if(sortProperty=='content'){
-        data.item.sort((prev, next) => prev.content.localeCompare(next.content));
-      }
-      PrintOnWindow(data, newStr)
+function Sort(device, sortProperty, order, data=null){
+  if(data==null){
+    if(SearchDataPublications == undefined || SearchDataPublications == null){
+      data = DataDevice._devices[IdElement]._publications
+    }
+    else{
+      data = SearchDataPublications
     }
   }
-  else if(order == 2){
+  if(order == 'increasing'){
     if(device == 'SMSDevice' || device == 'EmailDevice'){
-      let data
-      let newStr
       if(device == 'SMSDevice'){
-        data = DeviceDataSMS[IdElement]
-        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', 1)">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'group\', 1)">Группа</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', 1)">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', 1)">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', 1)">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', 1)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+        tableStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', \'decreasing\')">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'publucation_plan\', \'decreasing\')">План публикаций</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', \'decreasing\')">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', \'decreasing\')">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', \'decreasing\')">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', \'decreasing\')">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над планом публикаций</p></th></tr>'
+        data.Sort(sortProperty, order)
       }
       else if(device == 'EmailDevice'){
-        data = DeviceDataEmail[IdElement]
-        newStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'EmailDevice\', \'time\', 1)">Время</th><th class="th" onclick="Sort(\'EmailDevice\', \'group\', 1)">Группа</th><th class="th" onclick="Sort(\'EmailDevice\', \'name\', 1)">Наименование</th><th class="th" onclick="Sort(\'EmailDevice\', \'recipient\', 1)">Кому</th><th class="th" onclick="Sort(\'EmailDevice\', \'content\', 1)">Текст</th><th class="th" onclick="Sort(\'EmailDevice\', \'status\', 1)">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над группой</p></th></tr>'
+        tableStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'EmailDevice\', \'time\', \'decreasing\')">Время</th><th class="th" onclick="Sort(\'EmailDevice\', \'publucation_plan\', \'decreasing\')">План публикаций</th><th class="th" onclick="Sort(\'EmailDevice\', \'name\', \'decreasing\')">Наименование</th><th class="th" onclick="Sort(\'EmailDevice\', \'recipient\', \'decreasing\')">Кому</th><th class="th" onclick="Sort(\'EmailDevice\', \'content\', \'decreasing\')">Текст</th><th class="th" onclick="Sort(\'EmailDevice\', \'status\', \'decreasing\')">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над планом публикаций</p></th></tr>'
+        data.Sort(sortProperty, order)
       }
-
-      if(sortProperty == 'time'){
-        data.item.sort((next, prev) => prev.date.time.localeCompare(next.date.time));
+      PrintOnWindow(data._publications)
+    }
+  }
+  else if(order == 'decreasing'){
+    if(device == 'SMSDevice' || device == 'EmailDevice'){
+      if(device == 'SMSDevice'){
+        tableStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'SMSDevice\', \'time\', \'increasing\')">Время</th><th class="th" onclick="Sort(\'SMSDevice\', \'publucation_plan\', \'increasing\')">План публикаций</th><th class="th" onclick="Sort(\'SMSDevice\', \'name\', \'increasing\')">Наименование</th><th class="th" onclick="Sort(\'SMSDevice\', \'recipient\', \'increasing\')">Кому</th><th class="th" onclick="Sort(\'SMSDevice\', \'content\', \'increasing\')">Текст</th><th class="th" onclick="Sort(\'SMSDevice\', \'status\', \'increasing\')">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над планом публикаций</p></th></tr>'
+        data.Sort(sortProperty, order)
       }
-      else if(sortProperty=='status'){
-        data.item.sort((next, prev) => prev.status - next.status);
+      else if(device == 'EmailDevice'){
+        tableStr = '<tr class="tr"><th class="th th_left" onclick="Sort(\'EmailDevice\', \'time\', \'increasing\')">Время</th><th class="th" onclick="Sort(\'EmailDevice\', \'publucation_plan\', \'increasing\')">План публикаций</th><th class="th" onclick="Sort(\'EmailDevice\', \'name\', \'increasing\')">Наименование</th><th class="th" onclick="Sort(\'EmailDevice\', \'recipient\', \'increasing\')">Кому</th><th class="th" onclick="Sort(\'EmailDevice\', \'content\', \'increasing\')">Текст</th><th class="th" onclick="Sort(\'EmailDevice\', \'status\', \'increasing\')">Статус</th><th class="th">Действие</th><th class="th th_right">Действие <p class="p_margin_0">над планом публикаций</p></th></tr>'
+        data.Sort(sortProperty, order)
       }
-      else if(sortProperty=='recipient'){
-        if(device == 'SMSDevice'){data.item.sort((next, prev) => prev.recipient - next.recipient);}
-        else if(device == 'EmailDevice'){data.item.sort((next, prev) => prev.recipient.localeCompare(next.recipient));}
-      }
-      else if(sortProperty=='group'){
-        data.item.sort((next, prev) => prev.group.localeCompare(next.group));
-      }
-      else if(sortProperty=='name'){
-        data.item.sort((next, prev) => prev.name.localeCompare(next.name));
-      }
-      else if(sortProperty=='content'){
-        data.item.sort((next, prev) => prev.content.localeCompare(next.content));
-      }
-      PrintOnWindow(data, newStr)
+      PrintOnWindow(data._publications)
     }
   }
 }
 /*---Сортировка---*/
 
-/*Выводы в таблицы*/
-function PrintOnWindow(data, newStr){
+// Выводы в таблицу
+function PrintOnWindow(data){
   let color  // Цвет строки таблицы
   let icon  // Иконка статуса
   let time  // Время
 
   // В таблицу
-  document.getElementById('rezult').innerHTML = newStr;
-  for (let i in data.item){
-    // Не отправленно
-    if(data.item[i].status == 0){
-      color = '<tr class="tr tr-red">'
-      icon = '<div class="tdStatusNo"></div>'
+  document.getElementById('rezult').innerHTML = tableStr
+    try{
+      for (let i in data){
+        let status
+        try{
+          // Не отправленно
+          if(data[i]._status == 0){
+            color = '<tr class="tr tr-red">'
+            icon = '<div class="tdStatusNo"></div>'
+            status = 'status_No'
+          }
+          // Отправленно
+          else if(data[i]._status == 1){
+            color = '<tr class="tr">'
+            icon = '<div class="tdStatusOK"></div>'
+            status = 'status_Ok'
+          }
+          // Ожидание отправления
+          else if (data[i]._status == 2){
+            color = '<tr class="tr tr-yelow">'
+            icon = '<div class="tdStatusUnknow"></div>'
+            status = 'status_Unknow'
+          }
+          // Ошибка
+          else{
+            color = '<tr class="tr">'
+            icon = '<div class="tdStatusError"></div>'
+            status = 'null'
+          }
+        } catch(e){
+          color = '<tr class="tr">'
+          icon = '<div class="tdStatusError"></div>'
+          status = 'undefined'
+        }
+        // Вывод
+        let time
+        let publucation_plan
+        let name
+        let recipient
+        let content
+
+        // Проверка time контента
+        try{
+          if(data[i]._date._time.lenght != 0){
+            time = data[i]._date._time
+          }
+          else{
+            time = 'undefined'
+          }
+        }catch(e){
+          //alert('Ошибка '+ e.name + ':' + e.message + '\n\n' + 'Отсутствует поле объекта! Отсутствует "playlist.id"')
+        }
+
+        // Проверка name контента
+        try{
+          if(data[i]._name.lenght != 0){
+            name = data[i]._name;
+          }
+          else{
+            name = 'null'
+          }
+        }catch(e){
+          name = 'undefined'
+        }
+
+        // Проверка content контента
+        try{
+          if(data[i]._content.length != 0){
+            content = data[i]._content;
+          }
+          else{
+            content = 'null'
+          }
+        }catch(e){
+          content = 'undefined'
+        }
+
+        // Проверка description контента
+        try{
+          if(data[i]._publucation_plan.length != 0){
+            publucation_plan = data[i]._publucation_plan;
+          }
+          else{
+            publucation_plan = 'null'
+          }
+        }catch(e){
+          publucation_plan = 'undefined'
+        }
+
+        // Проверка recipient контента
+        try{
+          if(data[i]._recipient.length != 0){
+            recipient = data[i]._recipient;
+          }
+          else{
+            recipient = 'null'
+          }
+        }catch(e){
+          recipient = 'undefined'
+        }
+        if(flagStatus_content == 'status_All'){
+          document.getElementById('rezult').innerHTML += color+'<td class="td">'+ time +'</td><td class="td">'+ publucation_plan +'</td><td class="td">'+ name+'</td><td class="td">'+ recipient +'</td><td class="td">'+ content +'</td><td class="td">'+icon+'</td><td class="td"><div class="tdActionDelete"></div></td><td class="td"><div class="tdActionDelete"></div></td></tr>';
+        }
+        else if(flagStatus_content == status){
+          document.getElementById('rezult').innerHTML += color+'<td class="td">'+ time +'</td><td class="td">'+ publucation_plan +'</td><td class="td">'+ name+'</td><td class="td">'+ recipient +'</td><td class="td">'+ content +'</td><td class="td">'+icon+'</td><td class="td"><div class="tdActionDelete"></div></td><td class="td"><div class="tdActionDelete"></div></td></tr>';
+        }
+       }
+    }catch(e){
+      alert('Ошибка '+ e.name + ':' + e.message + '\n\n' + 'Отсутствует поле объекта!')
     }
-    // Отправленно
-    else if(data.item[i].status == 1){
-      color = '<tr class="tr">'
-      icon = '<div class="tdStatusOK"></div>'
-    }
-    // Ожидание отправления
-    else if (data.item[i].status == 2){
-      color = '<tr class="tr tr-yelow">'
-      icon = '<div class="tdStatusUnknow"></div>'
-    }
-    // Вывод
-    document.getElementById('rezult').innerHTML += color+'<td class="td">'+ data.item[i].date.time +'</td><td class="td">'+ data.item[i].group +'</td><td class="td">'+ data.item[i].name+'</td><td class="td">'+ data.item[i].recipient+'</td><td class="td">'+ data.item[i].content+'</td><td class="td">'+icon+'</td><td class="td"><div class="tdActionDelete"></div></td><td class="td"><div class="tdActionDelete"></div></td></tr>';
-   }
 }
-/*---Выводы в таблицы---*/
 
 /*Информация о каналах СМС*/
-function Device_info(IdElementNew, device){
-    IdElement = IdElementNew // Id елемента
-    let data        // Инофрмация из бд
-    let sortProperty// Поле сортировки
+function DeviceView(IdElementNew, device){
     Reload = 1
-
-    if(device == 'SMSDevice'){
-      data = DeviceDataSMS[IdElement];
-      document.getElementById('info_device').style.display='block';
-      document.getElementById('TopLeftRightBtn_CMC').style.display='flex';
-      document.getElementById('TopLeftRightBtn_Email').style.display='none';
-      sortProperty = 'time'
-    }
-    else if(device == 'EmailDevice'){
-      data = DeviceDataEmail[IdElement];
-      document.getElementById('info_device').style.display='block';
-      document.getElementById('TopLeftRightBtn_CMC').style.display='none';
-      document.getElementById('TopLeftRightBtn_Email').style.display='flex';
-      sortProperty = 'time'
-    }
-    else if(device == 'SpeakersDevice'){
-      data = DeviceDataSpeakers[IdElement];
-    }
-    else if(device == 'ScoreboardDevice'){
-      data = DeviceDataScoreboard[IdElement];
-    }
-    // Сортировка и вывод таблицы
-    Sort(device, sortProperty, 1);
-    // Секция информации о канале/устройстве
-    let color
-    let statusText
-    if(data.status == 0){color='style="background: #CC5252;"'; statusText='не в сети'}
-    else if(data.status == 1){color='style="background: #4FB93E;"'; statusText='в сети/подключён'}
-    else if(data.status == 2){color='style="background: #EBC747;"'; statusText='в сети'}
-    document.getElementById('view_list_item').innerHTML = '';
-    document.getElementById('view_list_item').innerHTML += '<div class="view_list_item_start_end_btn"><button type="button" class="view_list_item_end_btn">END</button><button class="view_list_item_start_btn">START</button></div><div class="item_status_light item_view_status_light_device" '+color+'></div><div class="item_descriptions item_descriptions_view"><div class="item_descriptions_text item_descriptions_text--device">Имя: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.name+'</span></div><div class="item_descriptions_text item_descriptions_text--device">Статус: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+statusText+'</span></div><div class="item_descriptions_text item_view_descriptions_text">Описание: <span class="item_descriptions_text_meaning item_descriptions_text_meaning--device">'+data.description+'</span></div></div>'
-
+    Sort(device, 'time', 'decreasing', DataDevice._devices[IdElement]._publications) // Сортировка и вывод таблицы
     SendSMSBg()
-    document.getElementById('sendTelephon').value = null;
-    document.getElementById('sendGroup').value = null;
-    document.getElementById('sendTime').value = null;
-    document.getElementById('sendTriger').value = null;
-    document.getElementById('sendTimeEnd').value = null;
-    document.getElementById('sendName').value = null;
-    document.getElementById('sendText').value = null;
+    SendSMSValue()
   }
 /*---Информация о каналах СМС---*/
+
+document.addEventListener("DOMContentLoaded", resize())
+function resize(){
+  let a = document.getElementById('list').offsetHeight - document.getElementById('TopLeftRightBtn_CMC').offsetHeight - document.getElementById('view_list_item').offsetHeight - document.getElementById('contentSearch').offsetHeight - 159
+    document.getElementById('table_container').style.height = a +'px'
+    window.onresize = function() {
+        a = document.getElementById('list').offsetHeight - document.getElementById('TopLeftRightBtn_CMC').offsetHeight - document.getElementById('view_list_item').offsetHeight - document.getElementById('contentSearch').offsetHeight - 30
+        document.getElementById('table_container').style.height = a +'px'
+    }
+}

@@ -1,41 +1,54 @@
-var DeviceDataSMS;
-var DeviceDataEmail;
-var DeviceDataSpeakers;
-var DeviceDataScoreboard;
-
+var flagStatus_device          // Флаги сортировки
+var flagStatus_content          // Флаги сортировки
+let dataUrl = new DataURL()
+var DataDevice
+var SearchDataPublications
+var IdElement            // Id устройства/канала
 /*Ввод и получение каналов*/
 function Devices(option){
-  if(option == 1){url = 'http://192.168.253.9:8080/Json/ScoreboardDevice.json?nocahe='+(new Date()).getTime(); device='ScoreboardDevice'}
-  else if(option == 2){url = 'http://192.168.253.9:8080/Json/SpeakersDevice.json?nocahe='+(new Date()).getTime(); device='SpeakersDevice'}
-  else if(option == 3){url = 'http://192.168.253.9:8080/Json/SMSDevice.json?nocahe='+(new Date()).getTime(); device='SMSDevice'}
-  else if(option == 4){url = 'http://192.168.253.9:8080/Json/EmailDevice.json?nocahe='+(new Date()).getTime(); device='EmailDevice'}
+  let url
+  if(option == 1){url = dataUrl._ScoreboardDeviceGet; device='ScoreboardDevice'}
+  else if(option == 2){url = dataUrl._SpeakersDeviceGet; device='SpeakersDevice'}
+  else if(option == 3){url = dataUrl._SMSDeviceGet; device='SMSDevice'}
+  else if(option == 4){url = dataUrl._EmailDeviceGet; device='EmailDevice'}
   Request('GET', url)
-  .then(data => Data(data, device))
+  .then(data => DataSet(device, data))
   .catch(err => console.log(err))
 }
 /*---Вывод и получение каналов---*/
-
-/*Занесение данных из базы*/
-function Data(data, device){
+function DataSet(device, data){
+  if(device=='SMSDevice'){
+    let arrayPublication
+    let publication
+    let device
+    DataDevice = new ArrayDevices()
+    for(let i in data){
+      arrayPublication = new ArrayPublicationsSMS()
+      for(let j in data[i].publication){
+        let date = new DatePublication(data[i].publication[j].date.day, data[i].publication[j].date.month, data[i].publication[j].date.year, data[i].publication[j].date.time)
+        publication = new PublicationSMS(data[i].publication[j].id, data[i].publication[j].name, undefined, data[i].publication[j].status, data[i].publication[j].content, date, undefined, data[i].publication[j].recipient)
+        arrayPublication._publications.push(publication)
+      }
+      device = new Device(data[i].id, data[i].name, data[i].description, data[i].status, arrayPublication)
+      DataDevice._devices.push(device)
+    }
+  }
+  PrintDevice(device, DataDevice._devices)
+}
+/*Смена типа устройств*/
+function СhangeDevices(device){
+  flagStatus_content = undefined
+  flagStatus_device = undefined
+  tableStr = ''
+  searchText = ''
   if(device == 'SMSDevice'){
-    DeviceDataSMS = data
-    PrintDevice(device)
+    Devices(3)
   }
   else if(device == 'EmailDevice'){
-    DeviceDataEmail = data
-    PrintDevice(device)
-  }
-  else if(device == 'SpeakersDevice'){
-    DeviceDataSpeakers = data
-    PrintDevice(device)
-  }
-  else if(device == 'ScoreboardDevice'){
-    DeviceDataScoreboard = data
-    PrintDevice(device)
+    Devices(4)
   }
 }
-/*---Занесение данных из базы---*/
-
+/*--------Смена типа устройств---------*/
 /*Получение - Отправка данных*/
 function Request(method, url, body = null){
     return new Promise((resolve, reject) => {
@@ -68,7 +81,8 @@ function SendMassege(device, option){
   let body
   let date = new Date();
   if(device == 'SMSDevice'){
-    url = 'http://192.168.253.9:8080/Json/SmsMessage.json'
+    document.getElementById('status_sms').style.visibility=null
+    document.getElementById('status_sms').style.color=null
     // Проверка на заполненность текста сообщения
     if(document.getElementById('sendText').validity.valueMissing){
       document.getElementById('sendText').style.background = '#e1817c6e'
@@ -81,105 +95,67 @@ function SendMassege(device, option){
     }else{test++}
     // Сохранение сообщения в базе как контент
     if(test == 2 && option == 'save'){
+      url = dataUrl._SMSContentPost
       body = {
         name: document.getElementById('sendName').value,
         content: document.getElementById('sendText').value
       }
+      console.log(body)
       Request('POST', url, body)
+          .catch(err => console.log('Error send content\n'+ err.name + '\n' + err.message))
+      document.getElementById('status_sms').innerHTML = 'Успешно сохранено'
+      document.getElementById('status_sms').style.color='#04ff3a'
+      document.getElementById('status_sms').style.visibility='inherit'
+    }
+    else if(test != 2 && option == 'save'){
+      document.getElementById('status_sms').innerHTML = 'Ошибка при заполнении'
+      document.getElementById('status_sms').style.color='#ff0404'
+      document.getElementById('status_sms').style.visibility='inherit'
     }
     // Отправка сообщения как публикацию
     else if(test == 2 && option == 'send'){
+      url = dataUrl._SmsMessage
       // Проверка на заполненность группы, телефона сообщения
-      if((document.getElementById('sendGroup').validity.valueMissing && document.getElementById('sendTelephon').validity.valueMissing) || document.getElementById('sendTelephon').value.length != 11){
-        if(document.getElementById('sendGroup').validity.valueMissing){
-          document.getElementById('sendGroup').style.background = '#e1817c6e'
-        }
-        if(document.getElementById('sendTelephon').validity.valueMissing || document.getElementById('sendTelephon').value.length != 11){
-          document.getElementById('sendTelephon').style.background = '#e1817c6e'
-        }
+      if(document.getElementById('recipient_value').validity.valueMissing || document.getElementById('recipient_value').value == ''){
+        document.getElementById('recipient_value').style.background = '#e1817c6e'
       }else{test++}
       // Проверка на заполненность времени отправки, ограничение времени отправки и тригера сообщения
-      if(document.getElementById('sendTime').validity.valueMissing && document.getElementById('sendTimeEnd').validity.valueMissing && document.getElementById('sendTriger').validity.valueMissing){
+      if(document.getElementById('sendTime').validity.valueMissing && document.getElementById('sendTimeEnd').validity.valueMissing){
         if(document.getElementById('sendTime').validity.valueMissing){
           document.getElementById('sendTime').style.background = '#e1817c6e'
         }
         if(document.getElementById('sendTimeEnd').validity.valueMissing){
           document.getElementById('sendTimeEnd').style.background = '#e1817c6e'
         }
-        if(document.getElementById('sendTriger').validity.valueMissing){
-          document.getElementById('sendTriger').style.background = '#e1817c6e'
-        }
       }else{test++}
       if(test == 4){
         body = {
-            idDevice: IdElement,
+            id: Number(IdElement),
             name: document.getElementById('sendName').value,
             date:{
-                year: date.getUTCFullYear(),
-                month: date.getUTCMonth()+1,
-                day: date.getUTCDate(),
-                time: document.getElementById('sendTime').value,
-                timeOut: document.getElementById('sendTimeEnd').value,
-                triger: document.getElementById('sendTriger').value
+                year: '2022',
+                month: '01',
+                day: '15',
+                time: String(document.getElementById('sendTime').value),
+                //timeOut: document.getElementById('sendTimeEnd').value,
             },
-            group: document.getElementById('sendGroup').value,
-            recipient: document.getElementById('sendTelephon').value,
+            recipient: document.getElementById('recipient_value').value,
             content: document.getElementById('sendText').value,
             status: 2
         }
+        console.log(body)
         Request('POST', url, body)
+            .catch(err => console.log('Error send content\n'+ err.name + '\n' + err.message))
+        document.getElementById('status_sms').innerHTML = 'Успешно отправлено'
+        document.getElementById('status_sms').style.color='#04ff3a'
+        document.getElementById('status_sms').style.visibility='inherit'
+      }
+      else{
+        document.getElementById('status_sms').innerHTML = 'Ошибка при заполнении'
+        document.getElementById('status_sms').style.color='#ff0404'
+        document.getElementById('status_sms').style.visibility='inherit'
       }
     }
   }
 }
 /*---Отправка сообщения---*/
-
-/*Валидация сообщений СМС*/
-if(document.getElementById('sendTelephon')){
-  /*Валидация номера телефона*/
-  document.getElementById('sendTelephon').addEventListener('keyup', function(){
-      this.value = this.value.replace(/[^\d]/g, '').substr(0,11);
-  })
-  /*Обработка активности полей при вводе*/
-  document.getElementById('sendTelephon').addEventListener('keyup', function(){
-    if(!document.getElementById('sendTelephon').validity.valueMissing){
-      document.getElementById('sendGroup').readOnly = true
-      document.getElementById('sendGroup').style.background = '#f5f5f5a3'
-    }
-    else{
-      document.getElementById('sendGroup').style.background = null
-      document.getElementById('sendGroup').readOnly = false
-    }
-  })
-  document.getElementById('sendGroup').addEventListener('keyup', function(){
-    if(!document.getElementById('sendGroup').validity.valueMissing){
-      document.getElementById('sendTelephon').readOnly = true
-      document.getElementById('sendTelephon').style.background = '#f5f5f5a3'
-    }
-    else{
-      document.getElementById('sendTelephon').style.background = null
-      document.getElementById('sendTelephon').readOnly = false
-    }
-  })
-  document.getElementById('sendTime').addEventListener('keyup', SendTime())
-  function SendTime(){
-    if(!document.getElementById('sendTime').validity.valueMissing){
-      document.getElementById('sendTriger').readOnly = true
-      document.getElementById('sendTriger').style.background = '#f5f5f5a3'
-    }
-    else{
-      document.getElementById('sendTriger').style.background = null
-      document.getElementById('sendTriger').readOnly = false
-    }
-  }
-  document.getElementById('sendTriger').addEventListener('keyup', function(){
-    if(!document.getElementById('sendTriger').validity.valueMissing){
-      document.getElementById('sendTime').readOnly = true
-      document.getElementById('sendTime').style.background = '#f5f5f5a3'
-    }
-    else{
-      document.getElementById('sendTime').style.background = null
-      document.getElementById('sendTime').readOnly = false
-    }
-  })
-}

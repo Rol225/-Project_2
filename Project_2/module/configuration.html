@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../css/configuration.css">
+    <script src="../js/DataClasses.js" defer></script>
     <script src="../js/module.js" defer></script>
     <script src="../js/conf.js" defer></script>
+    <script src="../main.js" type="module" defer></script>
 </head>
-<body>
+<body onchange="SaveLocalStorage()">
 
 <section class="nav">
   <ul>
@@ -69,7 +71,7 @@
           <div class="static_img static_img_blue_view_1"></div>
           <div class="static_img static_img_red_view_1"></div>
         </div>
-        <div class="static_img_list_item" onclick="StaticImg('centet')">
+        <div class="static_img_list_item" onclick="StaticImg('centre')">
           <div class="static_img_list_item_title">Вид 2</div>
           <div class="static_img static_img_blue_view_2"></div>
           <div class="static_img static_img_red_view_2"></div>

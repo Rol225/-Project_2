@@ -90,6 +90,8 @@ p{
 .setting{
   background: #848acf4f;
   width: 100%;
+  height: 100vh;
+  overflow-y: auto;
   display: none;
 }
 .title{

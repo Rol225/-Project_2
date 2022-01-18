@@ -50,6 +50,9 @@ function Roll(option){
       document.getElementById('ListContent').style.display='none'
       document.getElementById('list').style.width='30px'
       document.getElementById('info_device').style.width='94%'
+      if(document.getElementById('search_section_device')){
+        document.getElementById('search_section_device').style.display=null
+      }
     }
   else if(option==2){
       document.getElementById('roll').remove()
@@ -57,6 +60,9 @@ function Roll(option){
       document.getElementById('ListContent').style.display='block'
       document.getElementById('list').style.width='100%'
       document.getElementById('info_device').style.width='74%'
+      if(document.getElementById('search_section_device')){
+        document.getElementById('search_section_device').style.display='block'
+      }
     }
 }
 /*---Выпадающий список---*/

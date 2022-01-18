@@ -2,23 +2,26 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="../css/device.css">
+        <script src="../js/DataClasses.js" defer></script>
         <script src="../js/module.js" defer></script>
         <script src="../js/server-app.js" defer></script>
         <script src="../js/Device/SMS/info-item.js" defer></script>
         <script src="../js/Device/SMS/table.js" defer></script>
+        <script src="../js/Device/PrintDevices.js" defer></script>
+        <script src="../js/Device/SMS/recipient.js" defer></script>
     </head>
-    <section class="search">
-        <div class="tool_search">
-            <input type="text" class="input_search input_search_global" placeholder="Найти..." id="search_global">
-            <button class="search_icon_list_btn">
-                <hr class="search_icon_list_hr">
-                <hr class="search_icon_list_hr">
-                <hr class="search_icon_list_hr">
-            </button>
-            <button class="search_sort_btn">▼</button>
-            <div class="rtrey"></div>
-        </div>
-    </section>
+
+    <section class="search" id="search_section_device"></section>
+
+    <div class="search_flag" id="search_flag_device">
+      <div class="flag_status_container" onchange="FlagStatusChekDevice('SMSDevice', 'DeviceSearch', 'flag_status_device')" style="width:160px;">
+        <div class="flag_status_container_title">Статус</div>
+        <div><input class="flag_status flag_status_device" type="radio" name="flag_status_device" value="status_All" id="flag_status_device_All" checked><label class="inner-label" for="flag_status_device_All">Все</label></div>
+        <div><input class="flag_status flag_status_device" type="radio" name="flag_status_device" value="status_Ok" id="flag_status_device_Ok"><label class="inner-label" for="flag_status_device_Ok">В сети/подключён</label></div>
+        <div><input class="flag_status flag_status_device" type="radio" name="flag_status_device" value="status_Unknow" id="flag_status_device_Unknow"><label class="inner-label" for="flag_status_device_Unknow">В сети</label></div>
+        <div><input class="flag_status flag_status_device" type="radio" name="flag_status_device" value="status_No" id="flag_status_device_No"><label class="inner-label" for="flag_status_device_No">Не в сети</label></div>
+      </div>
+    </div>
 
     <div class="TopLeftRightBtn" id="TopLeftRightBtn_CMC">
         <button class="TopLeftRightBtn_btn Left_button" onclick="Left_button_queue('SMSDevice')" id="Left_button">Очередь</button>
@@ -36,14 +39,14 @@
             <div class="list_content" id="ListContent"></div>
 
             <div class="list_nav">
-                <button class="list_nav_item"><span>
+                <button class="list_nav_item" id="list_nav_ScoreboardDevice"><span>
                     <p class="list_nav_item_symbol">Т</p>
                     <p class="list_nav_item_symbol">а</p>
                     <p class="list_nav_item_symbol">б</p>
                     <p class="list_nav_item_symbol">л</p>
                     <p class="list_nav_item_symbol">о</p>
                 </span></button>
-                <button class="list_nav_item"><span class="list_nav_item_text">
+                <button class="list_nav_item" id="list_nav_SpeakersDevice"><span class="list_nav_item_text">
                     <p class="list_nav_item_symbol">Д</p>
                     <p class="list_nav_item_symbol">и</p>
                     <p class="list_nav_item_symbol">н</p>
@@ -53,12 +56,12 @@
                     <p class="list_nav_item_symbol">к</p>
                     <p class="list_nav_item_symbol">и</p>
                 </span></button>
-                <button class="list_nav_item" onclick="Devices(3)"><span class="list_nav_item_text">
+                <button class="list_nav_item" onclick="СhangeDevices('SMSDevice')" id='list_nav_SMSDevice'><span class="list_nav_item_text">
                     <p class="list_nav_item_symbol">С</p>
                     <p class="list_nav_item_symbol">М</p>
                     <p class="list_nav_item_symbol">С</p>
                 </span></button>
-                <button class="list_nav_item" onclick="Devices(4)"><span class="list_nav_item_text">
+                <button class="list_nav_item" onclick="СhangeDevices('EmailDevice')" id="list_nav_EmailDevice"><span class="list_nav_item_text">
                     <p class="list_nav_item_symbol">E</p>
                     <p class="list_nav_item_symbol">-</p>
                     <p class="list_nav_item_symbol">m</p>
@@ -80,65 +83,74 @@
             <hr class="view_list_item_hr">
             <div class="view_content" id="view_content">
                 <div class="view_search">
-                    <div class="tool_search no_bg">
-                        <input type="text" class="input_search input_search_global" placeholder="Найти..." id="search_global">
-                        <button class="search_icon_list_btn">
-                            <hr class="search_icon_list_hr">
-                            <hr class="search_icon_list_hr">
-                            <hr class="search_icon_list_hr">
-                        </button>
+                    <div class="search_module" style="background: transparent;">
+                      <input type="text" name="" value="" class="search_input" placeholder="Найти..." onkeyup="Search('contentSMS', 'contentSearch')" id="contentSearch">
+                      <svg onclick="SortContentView('search_flag_content')" class="icon_search" id="icon_search_content" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path  d="M6 11C6 10.4477 6.44772 10 7 10H41C41.5523 10 42 10.4477 42 11C42 11.5523 41.5523 12 41 12H7C6.44772 12 6 11.5523 6 11Z"/>
+                        <path d="M6 24C6 23.4477 6.44772 23 7 23H41C41.5523 23 42 23.4477 42 24C42 24.5523 41.5523 25 41 25H7C6.44772 25 6 24.5523 6 24Z"/>
+                        <path d="M6 37C6 36.4477 6.44772 36 7 36H41C41.5523 36 42 36.4477 42 37C42 37.5523 41.5523 38 41 38H7C6.44772 38 6 37.5523 6 37Z"/>
+                      </svg>
+                      <div class="search_flag" id="search_flag_content"></div>
                     </div>
                 </div>
+                <div id="table_container">
+                  <table class="table">
+                      <tbody id="rezult">
+                          <tr class="tr">
+                              <th class="th th_left">Время</th>
+                              <th class="th">План публикаций</th>
+                              <th class="th">Наименование</th>
+                              <th class="th">Кому</th>
+                              <th class="th">Статус</th>
+                              <th class="th">Действие</th>
+                              <th class="th th_right">Действие <p class="p_margin_0">над планом публикаций</p></th>
+                          </tr>
+                      </div>
+                    </tbody>
+                  </table>
+                </div>
 
-                <table class="table">
-                    <tbody id="rezult">
-                        <tr class="tr">
-                            <th class="th th_left">Время</th>
-                            <th class="th">Группа</th>
-                            <th class="th">Наименование</th>
-                            <th class="th">Кому</th>
-                            <th class="th">Статус</th>
-                            <th class="th">Действие</th>
-                            <th class="th th_right">Действие <p class="p_margin_0">над группой</p></th>
-                        </tr>
-                    </div>
-                  </tbody>
-                </table>
 
             </div>
-            <div class="send_message" id="send_message">
+            <div class="send_message" id="send_message" onchange="SendSMSBg()">
               <div class="send_message_item_1">
-                <div class="send_message_item_title">
-                  Кому
+                <div class="send_message_item_title recipient_title">
+                  Кому:
+                  <input id="recipient_value" readonly required>
                 </div>
-                <div class="send_message_arrow">
-                    <span class="send_message_arrow_text">Одному человеку</span>
-                    <input type="tel" class="send_message_arrow_input"  placeholder="Номер..." id="sendTelephon" pattern="[0-9]{11}" onclick="SendSMSBg()" required>
+
+                <div class="send_message_arrow recipient">
+                  <input type="radio" name="recipient" value="people" id="recipient_radio_people" onclick="RecipientURL('people')"><label for="recipient_radio_people">Одному человеку</label>
+                  <input type="radio" name="recipient" value="group" id="recipient_radio_group" onclick="RecipientURL('group')"><label for="recipient_radio_group">Группе людей</label>
+
+                  <div class="recipient_table" id="recipient_table">
+                    <div class="recipient_tr">
+                      <input type="search" value="" class="search_input" placeholder="Найти..." onkeyup="RecipientSearch()" onfocusout="RecipientSearch()" id="recipient_search"><div class="recipient_table_ex" onclick="RecipienTableClose()">&#215;</div>
+                    </div>
+                    <div class="recipient_tb" id="recipient_tb" onchange="RecipientValue()">
+                      <div class="recipient_tr"><input type="radio" name="recipient_tr" value="" id="recipient_tr_1"><label for="recipient_tr_1"></label></div>
+                    </div>
+
+                  </div>
                 </div>
-                <div class="send_message_arrow">
-                    <span class="send_message_arrow_text">Группе людей</span>
-                    <input type="text" class="send_message_arrow_input" placeholder="Группа..." id="sendGroup" onclick="SendSMSBg()" required>
-                </div>
+
+
                 <div class="send_message_item_title">
                   Время
                 </div>
                 <div class="send_message_arrow">
-                    <span class="send_message_arrow_text">Время отправления в ручную</span>
-                    <input type="time" class="send_message_arrow_input"  placeholder="00.00" id="sendTime" onchange="SendTime()" onchange="SendSMSBg()" required>
-                </div>
-                <div class="send_message_arrow">
-                    <span class="send_message_arrow_text">Отправление по событию</span>
-                    <input type="" class="send_message_arrow_input"  placeholder="Событие..." id="sendTriger" onclick="SendSMSBg()" required>
+                    <span class="send_message_arrow_text">Время отправления</span>
+                    <input type="time" class="send_message_arrow_input"  placeholder="00.00" id="sendTime" required>
                 </div>
                 <div class="send_message_arrow">
                     <span class="send_message_arrow_text">Ограничение по времени</span>
-                    <input type="time" class="send_message_arrow_input" placeholder="00.00" id="sendTimeEnd" onchange="SendSMSBg()" required>
+                    <input type="time" class="send_message_arrow_input" placeholder="00.00" id="sendTimeEnd" required>
                 </div>
                 <div class="send_message_item_title">
                   Имя
                 </div>
                 <div class="send_message_arrow">
-                    <input type="text" class="send_message_arrow_input" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px" id="sendName" onclick="SendSMSBg()" required>
+                    <input type="text" class="send_message_arrow_input" placeholder="Наименование сообщения..." style="width:100%; max-width: 410px" id="sendName" required>
                 </div>
               </div>
               <div class="send_message_item_2">
@@ -146,11 +158,12 @@
                   <button type="button" class="load_shablon" name="button" id="loadShablon">Загрузить шаблон</button>
                   <button type="button" class="clear" name="button" id="clearMessage" onclick="ClearText()">C</button>
                 </div>
-                <textarea type="text" class="input_massage" id="sendText" placeholder="Сообщение..." onclick="SendSMSBg()" required></textarea>
+                <textarea type="text" class="input_massage" id="sendText" placeholder="Сообщение..." required></textarea>
               </div>
               <div class="send_message_item_3">
                 <button type="button" name="button" class="send_sms_btn" id="sendBtn" onclick="SendMassege('SMSDevice', 'save')">Сохранить новый контент</button>
                 <button type="button" name="button" class="send_sms_btn" id="sendBtn" onclick="SendMassege('SMSDevice', 'send')">Отправить на исполнение</button>
+                <div id="status_sms">Успешно</div>
               </div>
             </div>
         </section>

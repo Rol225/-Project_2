@@ -54,31 +54,33 @@ textarea{
   background: #5A5656
 }
 /*Search*/
-.global_search{
-  display: flex;
+.search{
+  display: none;
   flex-wrap: nowrap;
   height: 4vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  background: #473f3f;
 }
-.tool_search{
+.search_module{
   display: flex;
   flex-wrap: nowrap;
   width: 450px;
   background: #473F3F;
   position: relative;
 }
-.no_bg{
-  background: transparent;
-}
 .search_device{
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size: 30px;
+  font-size: 3vh;
   font-weight: 500;
   letter-spacing: 6px;
   color: #ffff;
   margin-left: 30%;
   cursor: default;
 }
-.input_search{
+.search_input{
   width: 100%;
   max-width: 305px;
   height: 3vh;
@@ -88,31 +90,75 @@ textarea{
   margin-top: auto;
   margin-bottom: 0px;
 }
-.search_icon_list_btn, .search_sort_btn {
-    background: none;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    transition: .2s linear;
-    margin-left: 10px;
-    height: 4vh;
+.icon_search{
+  height: 3vh;
+  margin: auto 0 2px 3px;
+  cursor: pointer;
+  transition: .2s linear;
 }
-.search_icon_list_btn:hover, .search_sort_btn:hover{
-    background: #c7c6c60d;
+.icon_search:hover{
+  background: #625e5e;
 }
-.search_icon_list_hr {
-    width: 23px;
-    height: 0.4vh;
-    border: 0px solid;
-    background: #ffffff49;
-    border-radius: 20px;
-    margin: 3px auto;
-    padding: 0;
+.icon_search > path{
+  fill: #fff;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
 }
-.search_sort_btn {
-    font-size: 24px;
-    font-family: inherit;
-    text-align: center;
-    color: #ffffff49;
+.search_flag {
+  display: none;
+  background: #000000b5;
+  padding: 10px;
+  filter: drop-shadow(2px 4px 6px black);
+  left: 332px;
+  top: 30px;
+  position: absolute;
+  z-index: 19;
+}
+.flag_status_container {
+    width: 130px;
+}
+.flag_status_container_title{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #8f8b8b;
+  text-align: center;
+}
+.inner-label{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #d7d5d5;
+  position: relative;
+  padding-left: 21px;
+  transition: .2s linear;
+  cursor: pointer;
+}
+.inner-label:hover{
+  color: #ffff;
+}
+input.flag_status[type=radio] {
+    display: none;
+}
+label::before{
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  background-color: #ffffff00;
+  left: 0;
+  border-bottom: 1px dashed #d3d3d3;
+  transition: .5s ease;
+}
+input.flag_status[type=radio]:checked + label:before{
+  content: "\2713";
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #d3d3d3;
 }
 .rtrey {
   border: 2vh solid #473f3f;
@@ -129,14 +175,14 @@ textarea{
 }
 /*--------------List-----------*/
 .list{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: 95.9vh;
-    max-width: 400px;
-    background: #685858c7;
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 99.9vh;
+  max-width: 400px;
+  background: #685858c7;
+  position: relative;
 }
 .list_content{
     width: 92%;
@@ -162,11 +208,12 @@ textarea{
     justify-content: space-between;
     border: 5px solid transparent;
     transition: .2s linear;
-    margin-bottom: 8px;
+    margin: 0 auto 8px auto;
     cursor: zoom-in;
+    position: relative;
 }
 .list_item:first-child{
-    margin-top: -10px;
+    margin-top: 30px;
 }
 .list_item:hover{
     border: 5px solid #949494;
@@ -178,6 +225,14 @@ textarea{
 }
 .item_view_status_light_device{
     margin: 0 15px;
+}
+.item_status_light--device{
+  width: 100%;
+  height: 19px;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 9px;
 }
 .list_nav {
     width: 100%;
@@ -195,7 +250,7 @@ textarea{
     transition: .3s linear;
 }
 .list_nav_item:first-child{
-    margin-top: 0px;
+    margin-top: 39px;
 }
 .list_nav_item_symbol {
     display: block;
@@ -214,7 +269,9 @@ textarea{
     width: 100%;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 13px;
-    max-width: 216px;
+    max-width: 315px;
+    z-index: 2;
+    position: relative;
 }
 .item_descriptions_view{
     width: auto;
@@ -256,11 +313,14 @@ textarea{
     padding: 0;
 }
 /*---------*/
+.view_search {
+    background: #424242a6;
+}
 .info{
     display: none;
     width: 74%;
     margin-left: 25px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 .view_list_item{
     display: flex;
@@ -299,9 +359,13 @@ textarea{
 .view_content{
   display: block;
 }
+#table_container{
+  overflow-y: auto;
+}
 .table{
     width: 100%;
     text-align: center;
+    margin-top: 1vh;
     transition: .5s linear;
   }
 .th{
@@ -389,13 +453,13 @@ textarea{
   display: flex;
   justify-content: space-between;
   text-align: left;
-  margin: 5px 0;
+  margin: 5px auto;
 }
 .send_message_item_title {
     width: 100%;
     max-width: 410px;
     text-align: center;
-    margin: 15px 0;
+    margin: 15px auto;
 }
 .send_message_arrow_input{
   height: 20px;
@@ -454,6 +518,15 @@ textarea{
 .send_sms_btn:hover{
   background: #38afaac2;
 }
+#status_sms {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #04ff3a;
+    background: #0000006b;
+    visibility: hidden;
+}
 /*-----------------------Top lef Right btn-----------------------------------------*/
 .TopLeftRightBtn{
     display: flex;
@@ -486,4 +559,91 @@ textarea{
 }
 .Right_button{
     border-bottom-right-radius: 90px;
+}
+/*Recipient*/
+.recipient{
+  position: relative;
+}
+.recipient_title{
+  position: relative;
+  text-align: left;
+}
+#recipient_value{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 1px;
+  background: transparent;
+  position: absolute;
+  top: -2px;
+  left: 55px;
+}
+.recipient input[type="radio"]:checked,
+.recipient input[type="radio"]:not(:checked)
+{
+  display:none;
+}
+.recipient input[type="radio"]:checked + label,
+.recipient input[type="radio"]:not(:checked) + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+    line-height: 20px;
+    cursor: pointer;
+}
+.recipient input[type="radio"]:checked + label{
+  background: #747171;
+}
+.recipient label::before{
+  display: none;
+}
+.recipient label{
+  width: 100%;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+  border: 1px solid #abaaaa;
+  padding: 5px 0;
+  transition: .2s linear;
+}
+.recipient label:hover{
+  background: #747171;
+}
+.recipient_table{
+  display: none;
+  width: 100%;
+  background: #1c1c1c;
+  position: absolute;
+  filter: drop-shadow(2px 4px 6px black);
+  top: 48px;
+  z-index: 30;
+}
+#recipient_tb {
+  max-height: 291px;
+  overflow-y: auto;
+  border: 1px solid #abaaaa;
+}
+#recipient_tb label{
+  border: 0;
+}
+.recipient_tr{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.recipient_tr_2{
+  background: #383838;
+}
+.recipient_table_ex{
+  width: 30%;
+  text-align: center;
+  font-size: 25px;
+  padding: 1px 0;
+  background: #6a2f2f;
+  cursor: pointer;
+  transition: .2s linear;
+}
+.recipient_table_ex:hover{
+  background: #813636;
 }

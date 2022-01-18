@@ -74,6 +74,75 @@ textarea{
   margin-top: auto;
   margin-bottom: 0px;
 }
+.icon_search{
+  height: 3vh;
+  margin: auto 0 2px 3px;
+  cursor: pointer;
+  transition: .2s linear;
+}
+.icon_search:hover{
+  background: #625e5e;
+}
+.icon_search > path{
+  fill: #fff;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+}
+.search_flag {
+  display: none;
+  background: #000000b5;
+  padding: 10px;
+  filter: drop-shadow(2px 4px 6px black);
+  left: 332px;
+  position: absolute;
+  z-index: 10;
+}
+.flag_status_container {
+    width: 130px;
+}
+.flag_status_container_title{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #8f8b8b;
+  text-align: center;
+}
+.inner-label{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #d7d5d5;
+  position: relative;
+  padding-left: 21px;
+  transition: .2s linear;
+  cursor: pointer;
+}
+.inner-label:hover{
+  color: #ffff;
+}
+input.flag_status[type=radio] {
+    display: none;
+}
+label::before{
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  background-color: #ffffff00;
+  left: 0;
+  border-bottom: 1px dashed #d3d3d3;
+  transition: .5s ease;
+}
+input.flag_status[type=radio]:checked + label:before{
+  content: "\2713";
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #d3d3d3;
+}
 .rtrey {
   border: 2vh solid #473f3f;
   border-right: 2vh solid #00000000;
@@ -114,6 +183,7 @@ textarea{
   cursor: pointer;
   transition: .2s linear;
   margin: 0 7px 15px 7px;
+  position: relative;
 }
 .content_add{
   width: 100%;
@@ -177,14 +247,15 @@ textarea{
   top: 3.2vh;
   left: 0;
 }
-.contentSMS_view_page{
-  background: #686767eb;
-  border-radius: 20px;
+.contentSMS_view_page {
+  background: #778a8beb;
+  border-radius: 5px;
   width: 100%;
   max-width: 720px;
   padding: 30px;
   margin: 10vh auto 0 auto;
   position: relative;
+  filter: drop-shadow(2px 4px 6px black);
 }
 .contentSMS_name{
   height: 20px;
@@ -230,7 +301,7 @@ textarea{
 }
 .contentSMS_view_close{
   width: 50px;
-  border-top-right-radius: 20px;
+  border-top-right-radius: 5px;
   text-align: center;
   font-size: 25px;
   color: #3e3e3ed6;
@@ -243,4 +314,31 @@ textarea{
 .contentSMS_view_close:hover{
   color: #ffffffd6;
   background: #e3272785;
+}
+input#contentSMS_send_status {
+  height: 29px;
+  width: 250px;
+  border: none;
+  background: transparent;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 500;
+  font-size: 17px;
+  color: #58a82e;
+  padding: 0;
+}
+.content_del_btn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: URL("../icon/delete-button.png") center no-repeat;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background-size: contain;
+  transition: .2s linear;
+  cursor: pointer;
+}
+.content_del_btn:hover{
+  border: 2px solid rgb(2 2 2 / 93%);
 }

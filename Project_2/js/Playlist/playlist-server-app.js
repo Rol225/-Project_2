@@ -2,19 +2,51 @@ var PlaylistDataSMS;
 var PlaylistDataEmail;
 var PlaylistDataSpeakers;
 var PlaylistDataScoreboard;
+var DataContent
+var DataDevice
+let dataUrl = new DataURL()
+var Devices
+var NewPlaylist
 
 /*Ввод и получение плейлистов*/
-function Playlist(option){
-  if(option == 1){url = 'http://192.168.253.9:8080/Json/PlaylistDeviceScoreboard.json?nocahe='+(new Date()).getTime(); device='ScoreboardDevice'}
-  else if(option == 2){url = 'http://192.168.253.9:8080/Json/PlaylistDeviceSpeakers.json?nocahe='+(new Date()).getTime(); device='SpeakersDevice'}
-  else if(option == 3){url = 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json?nocahe='+(new Date()).getTime(); device='SMSDevice'}
-  else if(option == 4){url = 'http://192.168.253.9:8080/Json/PlaylistDeviceEmail.json?nocahe='+(new Date()).getTime(); device='EmailDevice'}
+function PlaylistURL(option){
+  let url
+  if(option == 1){url = dataUrl._ScoreboardPlaylistGet; device='ScoreboardDevice'}
+  else if(option == 2){url = dataUrl._SpeakersPlaylistGet; device='SpeakersDevice'}
+  else if(option == 3){url = dataUrl._SMSPlaylistGet; device='SMSDevice'}
+  else if(option == 4){url = dataUrl._EmailPlaylistGet; device='EmailDevice'}
   Request('GET', url)
-  .then(data => AllPlaylistsPrint(device, data))
+  .then(data => DataSet(device, data))
   .catch(err => console.log(err))
 }
 /*---Ввод и получение плейлистов---*/
+// Установка данных
+function DataSet(device, data){
+  Devices = []
+  NewPlaylist = undefined
+  if(device=='SMSDevice'){
+    PlaylistDataSMS = new ArrayPlaylist()
+    let playlist
+    for(let i in data.playlist){
+      playlist = new Playlist(data.playlist[i].id, data.playlist[i].name, data.playlist[i].description, data.playlist[i].status, data.playlist[i].content)
+      PlaylistDataSMS._playlists.push(playlist)
+    }
+    DataContent = new ArrayContentSMS()
+    let content
+    for(let i in data.content){
+      content = new ContentSMS(data.content[i].id, data.content[i].name, undefined, data.content[i].status, data.content[i].content)
+      DataContent._contents.push(content)
+    }
+    DataDevice = new ArrayDevices()
+    let device
+    for(let i in data.device){
+      device = new Device(data.device[i].id, data.device[i].name, data.device[i].description, undefined, undefined)
+      DataDevice._devices.push(device)
+    }
+  }
 
+  AllPlaylistsPrint(device, PlaylistDataSMS)
+}
 /*Получение - Отправка данных*/
 function Request(method, url, body = null){
     return new Promise((resolve, reject) => {
@@ -40,6 +72,7 @@ function Request(method, url, body = null){
   }
 /*---Получение - Отправка данных---*/
 
+// Отправка плейлиста
 function PlaylistSend(option){
   let test = 0
   NewPlaylist.name = document.getElementById('view_title').value
@@ -47,12 +80,15 @@ function PlaylistSend(option){
 
   test += Validation('text', NewPlaylist.name)
   test += Validation('text', NewPlaylist.description)
-  test += Validation('array', NewPlaylist.item)
+  test += Validation('array', NewPlaylist.content)
 
-  if(option == 1){
+  if(option == 1 || option == 3){
     if(test==3){
-      console.log(NewPlaylist)
-      Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylist)
+      document.getElementById('status_playlist_send').style.visibility='visible'
+      if(option == 3){NewPlaylist.id = null}
+      //console.log(NewPlaylist)
+      Request('POST', dataUrl._SMSPlaylistPost, NewPlaylist)
+          .catch(err => console.log('Error send plylist:\n'+err.name + '\n'+  err.message))
     }
     else{
       console.log('Ошибка не заполненно поле')
@@ -64,11 +100,13 @@ function PlaylistSend(option){
       let NewPlaylistMod_2={
         name: NewPlaylist.name,
         description: NewPlaylist.description,
-        item: NewPlaylist.item,
+        content: NewPlaylist.content,
         devices: Devices
       }
-      console.log(NewPlaylist)
-      Request('POST', 'http://192.168.253.9:8080/Json/PlaylistDeviceSms.json', NewPlaylistMod_2)
+      //console.log(NewPlaylistMod_2)
+      document.getElementById('status_playlist_send').style.visibility='visible'
+      Request('POST', dataUrl._SMSPlaylistPost, NewPlaylistMod_2)
+          .catch(err => console.log('Error send plylist:\n'+err.name + '\n'+  err.message))
     }
     else{
       console.log('Ошибка не заполненно поле')
@@ -84,7 +122,7 @@ function Validation(input, field){
     if(field == ''){test=0}
   }
   else if(input == 'array'){
-    if(field.length == 1){test=0}
+    if(field.length <= 0){test=0}
   }
   return test
 }

@@ -9,11 +9,11 @@ function createWindow(){
   win = new BrowserWindow({
     width,
     height,
-    //frame: false,
-      webPreferences: {
-         nodeIntegration: true,
-         contextIsolation: false
-      }
+    webPreferences:{
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+
   });
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
